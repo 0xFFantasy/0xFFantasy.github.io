@@ -12,11 +12,11 @@
             background: #0f0f0f; color: #fff; 
         }
         h1 { text-align: center; margin: 30px 0 10px; font-size: 2.8em; }
-        .subtitle { text-align: center; color: #aaa; margin-bottom: 30px; }
+{ 文本对齐: 居中; 颜色: #aaa;下边距: 30像素; }
 
         .tab-container {
             max-width: 1400px;
-            margin: 0 auto 30px;
+            边距: 0 自动 30像素;
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
@@ -48,16 +48,16 @@
             margin: 20px auto;
             text-align: center;
         }
-        .search-box input {
+        .搜索框 输入 {
             width: 100%;
-            max-width: 600px;
-            padding: 15px 20px;
-            font-size: 1.1em;
+            最大宽度: 600像素;
+            内边距: 15像素 20像素;
+            字体大小: 1.1em;
             background: #1f1f1f;
             border: 2px solid #00bfff;
             border-radius: 50px;
             color: #fff;
-            outline: none;
+            轮廓: 无;
         }
 
         .test-info {
@@ -66,9 +66,9 @@
             padding: 15px;
             background: #1f1f1f;
             border-radius: 12px;
-            font-size: 0.95em;
+            字体大小: 0.95em;
             text-align: center;
-            color: #0f0;
+            颜色: #0f0;
         }
 
         table { 
@@ -78,14 +78,14 @@
             margin: 0 auto;
         }
         th, td { 
-            padding: 14px 10px; 
+            填充: 14像素 10像素; 
             text-align: center; 
             border: 1px solid #333; 
         }
         th { 
             background: #00bfff; 
             color: #000; 
-            font-size: 1.1em; 
+            字体大小: 1.1em; 
             position: sticky;
             top: 0;
             z-index: 10;
@@ -97,16 +97,16 @@
         .footer {
             text-align: center;
             margin-top: 80px;
-            color: #666;
-            font-size: 0.95em;
+            颜色: #666;
+            字体大小: 0.95em;
         }
     </style>
-</head>
-<body>
+</头部>
+<主体>
     <h1>🚀 显卡 / CPU 天梯图 2026</h1>
     <p class="subtitle">网游性能对比 · 实时搜索 · 仅你可编辑</p>
 
-    <!-- Tab 按钮 -->
+    <!-- 选项卡按钮 -->
     <div class="tab-container">
         <button class="tab-btn active" onclick="switchTab(0)">GPU 网游性能</button>
         <button class="tab-btn" onclick="switchTab(1)">GPU 综合性能</button>
@@ -114,7 +114,7 @@
         <button class="tab-btn" onclick="switchTab(3)">CPU 综合性能</button>
     </div>
 
-    <!-- ==================== Tab 0: GPU 网游性能（可搜索表格） ==================== -->
+    <!-- ==================== 选项卡0：GPU网络游戏性能（可搜索表格） ==================== -->
     <div id="tab-0" class="tab-content active">
         <div class="test-info">
             测试平台：CPU=9850X3D (PBO+200)｜主板: 微星X870 白刀锋｜内存: 金百达16Gx2 6400C32｜硬盘: 三星9100PRO 1TB<br>
@@ -128,9 +128,9 @@
         <table id="gpuTable">
             <thead>
                 <tr>
-                    <th>NVIDIA (开DLSS)</th>
-                    <th>AMD (开FSR)</th>
-                    <th>Intel (2026.5已退出独显市场)</th>
+                    <th>NVIDIA（开启DLSS）</th>
+                    <th>AMD（开启FSR）</th>
+                    <th>Intel（2026.5已退出独立显卡市场）</th>
                 </tr>
             </thead>
             <tbody>
@@ -139,31 +139,32 @@
                 <tr><td>RTX 5080</td><td></td><td></td></tr>
                 <tr><td>RTX 4080Super</td><td></td><td></td></tr>
                 <tr><td>RTX 4080</td><td></td><td></td></tr>
+                <tr><td>RTX 5070Ti</td><td></td><td></td></tr>
                 <tr><td>RTX 4070Ti</td><td></td><td></td></tr>
-                <tr><td class="highlight">RTX 4070Ti Super (16GB)</td><td class="amd-highlight">RX 7900XTX</td><td></td></tr>
+                <tr><td>RTX 4070Ti 超级（16GB）</td><td class="amd-highlight">RX 7900XTX</td><td></td></tr>
                 <tr><td>RTX 5070</td><td></td><td></td></tr>
-                <tr><td>RTX 4070Ti (12GB)</td><td>RX 9070XT</td><td></td></tr>
+                <tr><td>RTX 4070Ti（12GB）</td><td>RX 9070XT</td><td></td></tr>
                 <tr><td>RTX 4070Super</td><td>RX 7900XT</td><td></td></tr>
-                <tr><td>RTX 3090</td><td>RX 9070 (16GB)</td><td></td></tr>
-                <tr><td>RTX 3080Ti (12GB)</td><td>RX 9070 GRE (12GB)</td><td></td></tr>
+                <tr><td>RTX 3090</td><td>RX 9070（16GB）</td><td></td></tr>
+                <tr><td>RTX 3080Ti（12GB）</td><td>RX 9070 GRE（12GB）</td><td></td></tr>
                 <tr><td>RTX 4070</td><td></td><td></td></tr>
                 <tr><td>RTX 3080 10GB</td><td>RX 7900 GRE</td><td></td></tr>
                 <tr><td>RTX 5060Ti 16GB</td><td>RX 7800XT</td><td></td></tr>
                 <tr><td>RTX 3070Ti (8GB)</td><td>RX 7700XT (12GB)</td><td></td></tr>
                 <tr><td>RTX 2080Ti 11GB</td><td>RX 6800XT (16GB)</td><td></td></tr>
                 <tr><td>RTX 5060Ti 8GB</td><td>RX 9060XT 16GB</td><td></td></tr>
-                <tr><td>RTX 3070 (8GB)</td><td>RX 9060XT 8GB</td><td></td></tr>
+                <tr><td>RTX 3070 (8GB)</td><td>RX 9060XT 8GB</td><tdclass="intel-highlight">Arc A770(16GB)</td></tr>
                 <tr><td>RTX 5060 (8GB)</td><td></td><td></td></tr>
                 <tr><td>RTX 4060Ti 16GB</td><td></td><td></td></tr>
-                <tr><td>RTX 3060Ti 12GB</td><td>RX 6750XT (12GB)</td><td></td></tr>
+                <tr><td>RTX 3060Ti 12GB</td><td>RX 6750XT (12GB)</td><td>Arc B580(12GB)</td></tr>
                 <tr><td>RTX 4060Ti 8GB</td><td>RX 6700XT (12GB)</td><td></td></tr>
                 <tr><td>RTX 2080Super</td><td>RX 7600XT (16GB)</td><td></td></tr>
                 <tr><td>RTX 3060Ti 8GB</td><td></td><td></td></tr>
                 <tr><td>GTX 1080Ti 11GB</td><td>RX 7600XT (16GB)</td><td></td></tr>
-                <tr><td>RTX 2080</td><td></td><td></td></tr>
+                <tr><td>RTX 2080</td><td></td><td>Arc A750</td></tr>
                 <tr><td>RTX 4060（8GB）</td><td>RX 6750GRE 12GB</td><td></td></tr>
                 <tr><td>RTX 2070Super (8GB)</td><td>RX 6750GRE 10GB</td><td></td></tr>
-                <tr><td>RTX 2070（8GB）</td><td>RX 6700XL（10GB）</td><td></td></tr>
+                <tr><td>RTX 2070（8GB）</td><td>RX 6700XL（10GB）</td><td>Arc B570(10GB)</td></tr>
                 <tr><td>RTX 3060 12GB</td><td></td><td>Arc B570（10GB）</td></tr>
                 <tr><td>GTX 1080</td><td></td><td></td></tr>
                 <tr><td>RTX 3060 8GB</td><td>RX 7650GRE (8GB) / RX 7600</td><td>Arc A580</td></tr>
@@ -171,7 +172,7 @@
                 <tr><td>GTX 1070Ti</td><td>RX 6600XT</td><td></td></tr>
                 <tr><td>RTX 2060</td><td>RX 6600</td><td></td></tr>
                 <tr><td>GTX 1070</td><td>RX 5700 (8GB)</td><td></td></tr>
-                <tr><td>RTX 3050 8GB</td><td>RX 5600XT</td><td></td></tr>
+                <tr><td>RTX 3050 8GB</td><td>RX 5600XT</td><td>Arc A380(6GB)</td></tr>
                 <tr><td>GTX 1660Ti</td><td>RX 6600LE</td><td></td></tr>
                 <tr><td>GTX 1660Super</td><td>RX 590</td><td></td></tr>
                 <tr><td>RTX 3050 4GB</td><td>RX 580 2304SP</td><td></td></tr>
