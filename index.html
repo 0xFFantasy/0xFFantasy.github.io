@@ -12,11 +12,11 @@
             background: #0f0f0f; color: #fff; 
         }
         h1 { text-align: center; margin: 30px 0 10px; font-size: 2.8em; }
-{ 文本对齐: center; 颜色: #aaa;下边距: 30px; }
+        .subtitle { text-align: center; color: #aaa; margin-bottom: 30px; }
 
         .tab-container {
             max-width: 1400px;
-            边距: 0 自动 30px;
+            margin: 0 auto 30px;
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
@@ -43,66 +43,43 @@
         .tab-content { display: none; max-width: 1400px; margin: 0 auto; }
         .tab-content.active { display: block; }
 
-        .search-box {
-            max-width: 1400px;
-            margin: 20px auto;
-            text-align: center;
-        }
-        .搜索框 输入 {
+        .image-container {
             width: 100%;
-            最大宽度: 600px;
-            内边距: 15px 20px;
-            字体大小: 1.1em;
-            background: #1f1f1f;
-            border: 2px solid #00bfff;
-            border-radius: 50px;
-            color: #fff;
-            轮廓: 无;
-        }
-
-        .test-info {
-            max-width: 1400px;
-            margin: 0 auto 20px;
+            overflow-x: auto;
             padding: 15px;
             background: #1f1f1f;
             border-radius: 12px;
-            字体大小: 0.95em;
-            text-align: center;
-            颜色: #0f0;
+            box-shadow: 0 0 25px rgba(0, 191, 255, 0.3);
+        }
+        .image-container img {
+            width: 100%;
+            max-width: 2600px; /* 保证你的宽表格完整显示 */
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border: 4px solid #333;
+            border-radius: 10px;
         }
 
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            background: #1f1f1f; 
-            margin: 0 auto;
+        .update-tip {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #222;
+            border-radius: 8px;
+            font-size: 0.95em;
+            color: #0f0;
         }
-        th, td { 
-            填充: 14px 10px; 
-            text-align: center; 
-            border: 1px solid #333; 
-        }
-        th { 
-            background: #00bfff; 
-            color: #000; 
-            字体大小: 1.1em; 
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        tr:hover { background: #2a2a2a; }
-        .highlight { background: #4ade80 !important; color: #000; font-weight: bold; }
-        .amd-highlight { background: #fb923c !important; color: #000; font-weight: bold; }
-        .intel-highlight { background: #00bfff !important; color: #000; font-weight: bold; }
+
         .footer {
             text-align: center;
             margin-top: 80px;
-            颜色: #666;
-            字体大小: 0.95em;
+            color: #666;
+            font-size: 0.95em;
         }
     </style>
-</头部>
-<主体>
+</head>
+<body>
     <h1>🚀 显卡 / CPU 天梯图 2026</h1>
     <p class="subtitle">B站：0xFFantasy </p>
 
