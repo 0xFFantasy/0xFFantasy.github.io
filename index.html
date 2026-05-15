@@ -187,12 +187,11 @@
     </div>
 
     <!-- 其他 Tab 暂时占位（你以后可以继续加表格） -->
-    <div id="tab-1" class="tab-content">
+    <div id="tab-1" class="tab-content active">
         <div class="test-info">
             综合性能：游戏+生产力+AI+光追<br>
             测试平台参考：高配平台综合基准
         </div>
-
         <div class="search-box">
             <input type="text" id="searchComprehensive" placeholder="🔍 搜索显卡型号（如 RTX 5090、RX 7900XTX、Arc A770）..." onkeyup="filterComprehensiveTable()">
         </div>
@@ -267,13 +266,12 @@
             const input = document.getElementById("searchInput").value.toUpperCase();
             const table = document.getElementById("gpuTable");
             const tr = table.getElementsByTagName("tr");
-
             for (let i = 1; i < tr.length; i++) {  // 从1开始跳过表头
                 const td = tr[i].getElementsByTagName("td");
-                让 匹配 = false;
+                let match = false;
                 for (let j = 0; j < td.length; j++) {
-                    如果 (td[j] && td[j].innerHTML.toUpperCase().indexOf(input) > -1) {
-                        匹配 = true;
+                    if (td[j] && td[j].innerHTML.toUpperCase().indexOf(input) > -1) {
+                        match = true;
                          break;
                     }
                 }
@@ -284,7 +282,6 @@
             const input = document.getElementById("searchComprehensive").value.toUpperCase();
             const table = document.getElementById("gpuComprehensiveTable");
             const tr = table.getElementsByTagName("tr");
-
             for (let i = 1; i < tr.length; i++) {
                 const td = tr[i].getElementsByTagName("td");
                 let match = false;
