@@ -3,30 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CPU & GPU 天梯图 2026 - 0xFFantasy</title>
+    <title>显卡天梯图 2026 - 0xFFantasy</title>
     <style>
         :root { --primary: #00bfff; }
         body { 
             font-family: "Microsoft YaHei", system-ui, sans-serif; 
             margin: 0; padding: 20px; 
             background: #0f0f0f; color: #fff; 
-            line-height: 1.6;
         }
         h1 { text-align: center; margin: 30px 0 10px; font-size: 2.8em; }
         .subtitle { text-align: center; color: #aaa; margin-bottom: 30px; }
 
-        /* Tab 按钮 */
         .tab-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto 30px;
             display: flex;
-            gap: 8px;
+            gap: 10px;
             flex-wrap: wrap;
             justify-content: center;
         }
         .tab-btn {
-            padding: 14px 28px;
-            font-size: 1.1em;
+            padding: 14px 32px;
+            font-size: 1.15em;
             font-weight: bold;
             background: #1f1f1f;
             color: #fff;
@@ -39,52 +37,76 @@
         .tab-btn.active {
             background: var(--primary);
             color: #000;
-            box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
         }
 
-        /* 内容区域 */
-        .tab-content {
-            display: none;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .tab-content { display: none; max-width: 1400px; margin: 0 auto; }
         .tab-content.active { display: block; }
+
+        .search-box {
+            max-width: 1400px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .search-box input {
+            width: 100%;
+            max-width: 600px;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            background: #1f1f1f;
+            border: 2px solid #00bfff;
+            border-radius: 50px;
+            color: #fff;
+            outline: none;
+        }
+
+        .test-info {
+            max-width: 1400px;
+            margin: 0 auto 20px;
+            padding: 15px;
+            background: #1f1f1f;
+            border-radius: 12px;
+            font-size: 0.95em;
+            text-align: center;
+            color: #0f0;
+        }
 
         table { 
             width: 100%; 
             border-collapse: collapse; 
             background: #1f1f1f; 
-            margin-bottom: 40px;
+            margin: 0 auto;
         }
         th, td { 
-            padding: 16px 12px; 
+            padding: 14px 10px; 
             text-align: center; 
             border: 1px solid #333; 
         }
         th { 
-            background: var(--primary); 
+            background: #00bfff; 
             color: #000; 
-            字体大小: 1.2em; 
+            font-size: 1.1em; 
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
-        tr:nth-child(even) { background: #2a2a2a; }
-        .S { 背景: #4ade80！重要; 颜色: #000; 字体粗细: 粗体; }
-        .A { 背景: #a3e635!important; 颜色: #000; }
-        .B { 背景: #facc15!important; 颜色: #000; }
-        .C { background: #fb923c !important; color: #000; }
+        tr:hover { background: #2a2a2a; }
+        .highlight { background: #4ade80 !important; color: #000; font-weight: bold; }
+        .amd-highlight { background: #fb923c !important; color: #000; font-weight: bold; }
 
         .footer {
             text-align: center;
-            上边距: 60像素;
-            颜色: #666;
-            字体大小: 0.95em;
+            margin-top: 80px;
+            color: #666;
+            font-size: 0.95em;
         }
     </style>
 </head>
 <body>
-    <h1>🚀 CPU / GPU 天梯图 2026</h1>
-    <p class="subtitle">自由查看 · 欢迎贡献数据</p>
+    <h1>🚀 显卡 / CPU 天梯图 2026</h1>
+    <p class="subtitle">网游性能对比 · 实时搜索 · 仅你可编辑</p>
 
-    <!-- 选项卡按钮 -->
+    <!-- Tab 按钮 -->
     <div class="tab-container">
         <button class="tab-btn active" onclick="switchTab(0)">GPU 网游性能</button>
         <button class="tab-btn" onclick="switchTab(1)">GPU 综合性能</button>
@@ -92,70 +114,118 @@
         <button class="tab-btn" onclick="switchTab(3)">CPU 综合性能</button>
     </div>
 
-    <!-- 选项卡内容 0：GPU 网游性能 -->
+    <!-- ==================== Tab 0: GPU 网游性能（可搜索表格） ==================== -->
     <div id="tab-0" class="tab-content active">
-        <h2 style="text-align:center; color:var(--primary);">GPU 网游性能天梯图（高帧游戏）</h2>
-        <table>
-            <tr><th>阶梯</th><th>显卡型号</th><th>相对性能</th><th>推荐用途</th></tr>
-            <tr class="S"><td>S+</td><td>RTX 5090</td><td>100%</td><td>4K 极致光追</td></tr>
-            <tr class="S"><td>S</td><td>RTX 5080 / RX 8900 XTX</td><td>85-92%</td><td>4K 高帧 / 3K 顶级</td></tr>
-            <tr class="A"><td>A+</td><td>RTX 5070 Ti / RX 8800 XT</td><td>70-78%</td><td>2K 极高帧</td></tr>
-            <!-- 继续添加更多行... -->
+        <div class="test-info">
+            测试平台：CPU=9850X3D (PBO+200)｜主板: 微星X870 白刀锋｜内存: 金百达16Gx2 6400C32｜硬盘: 三星9100PRO 1TB<br>
+            参考游戏：PUBG (吃鸡) / 三角洲行动 / 无畏契约 / 英雄联盟 / CS2 / 逆战: 未来 / 永劫无间
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 搜索显卡型号（如 RTX 5090、RX 7900XTX）..." onkeyup="filterTable()">
+        </div>
+
+        <table id="gpuTable">
+            <thead>
+                <tr>
+                    <th>NVIDIA (开DLSS)</th>
+                    <th>AMD (开FSR)</th>
+                    <th>Intel (2026.5已退出独显市场)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="highlight">RTX 5090</td><td></td><td></td></tr>
+                <tr><td>RTX 4090</td><td></td><td></td></tr>
+                <tr><td>RTX 5080</td><td></td><td></td></tr>
+                <tr><td>RTX 4080Super</td><td></td><td></td></tr>
+                <tr><td>RTX 4080</td><td></td><td></td></tr>
+                <tr><td>RTX 4070Ti</td><td></td><td></td></tr>
+                <tr><td class="highlight">RTX 4070Ti Super (16GB)</td><td class="amd-highlight">RX 7900XTX</td><td></td></tr>
+                <tr><td>RTX 5070</td><td></td><td></td></tr>
+                <tr><td>RTX 4070Ti (12GB)</td><td>RX 9070XT</td><td></td></tr>
+                <tr><td>RTX 4070Super</td><td>RX 7900XT</td><td></td></tr>
+                <tr><td>RTX 3090</td><td>RX 9070 (16GB)</td><td></td></tr>
+                <tr><td>RTX 3080Ti (12GB)</td><td>RX 9070 GRE (12GB)</td><td></td></tr>
+                <tr><td>RTX 4070</td><td></td><td></td></tr>
+                <tr><td>RTX 3080 10GB</td><td>RX 7900 GRE</td><td></td></tr>
+                <tr><td>RTX 5060Ti 16GB</td><td>RX 7800XT</td><td></td></tr>
+                <tr><td>RTX 3070Ti (8GB)</td><td>RX 7700XT (12GB)</td><td></td></tr>
+                <tr><td>RTX 2080Ti 11GB</td><td>RX 6800XT (16GB)</td><td></td></tr>
+                <tr><td>RTX 5060Ti 8GB</td><td>RX 9060XT 16GB</td><td></td></tr>
+                <tr><td>RTX 3070 (8GB)</td><td>RX 9060XT 8GB</td><td></td></tr>
+                <tr><td>RTX 5060 (8GB)</td><td></td><td></td></tr>
+                <tr><td>RTX 4060Ti 16GB</td><td></td><td></td></tr>
+                <tr><td>RTX 3060Ti 12GB</td><td>RX 6750XT (12GB)</td><td></td></tr>
+                <tr><td>RTX 4060Ti 8GB</td><td>RX 6700XT (12GB)</td><td></td></tr>
+                <tr><td>RTX 2080Super</td><td>RX 7600XT (16GB)</td><td></td></tr>
+                <tr><td>RTX 3060Ti 8GB</td><td></td><td></td></tr>
+                <tr><td>GTX 1080Ti 11GB</td><td>RX 7600XT (16GB)</td><td></td></tr>
+                <tr><td>RTX 2080</td><td></td><td></td></tr>
+                <tr><td>RTX 4060（8GB）</td><td>RX 6750GRE 12GB</td><td></td></tr>
+                <tr><td>RTX 2070Super (8GB)</td><td>RX 6750GRE 10GB</td><td></td></tr>
+                <tr><td>RTX 2070（8GB）</td><td>RX 6700XL（10GB）</td><td></td></tr>
+                <tr><td>RTX 3060 12GB</td><td></td><td>Arc B570（10GB）</td></tr>
+                <tr><td>GTX 1080</td><td></td><td></td></tr>
+                <tr><td>RTX 3060 8GB</td><td>RX 7650GRE (8GB) / RX 7600</td><td>Arc A580</td></tr>
+                <tr><td>RTX 2060Super</td><td>RX 5700XT (8GB)</td><td></td></tr>
+                <tr><td>GTX 1070Ti</td><td>RX 6600XT</td><td></td></tr>
+                <tr><td>RTX 2060</td><td>RX 6600</td><td></td></tr>
+                <tr><td>GTX 1070</td><td>RX 5700 (8GB)</td><td></td></tr>
+                <tr><td>RTX 3050 8GB</td><td>RX 5600XT</td><td></td></tr>
+                <tr><td>GTX 1660Ti</td><td>RX 6600LE</td><td></td></tr>
+                <tr><td>GTX 1660Super</td><td>RX 590</td><td></td></tr>
+                <tr><td>RTX 3050 4GB</td><td>RX 580 2304SP</td><td></td></tr>
+                <tr><td>GTX 1060 6GB</td><td>RX 580 8GB 2048SP</td><td></td></tr>
+                <tr><td>GTX 1060 5GB</td><td></td><td></td></tr>
+                <tr><td>GTX 1650Ti</td><td></td><td></td></tr>
+                <tr><td>GTX 1650Super</td><td>RX 6500XT 4GB</td><td></td></tr>
+                <tr><td>GTX 1060 3GB</td><td>RX 6400</td><td></td></tr>
+                <tr><td>GTX 1650</td><td></td><td></td></tr>
+            </tbody>
         </table>
     </div>
 
-    <!-- 选项卡内容 1：GPU 综合性能 -->
+    <!-- 其他 Tab 暂时占位（你以后可以继续加表格） -->
     <div id="tab-1" class="tab-content">
-        <h2 style="text-align:center; color:var(--primary);">GPU综合性能天梯图（光追+生产力+AI）</h2>
-        <table>
-            <tr><th>阶梯</th><th>显卡型号</th><th>相对性能</th><th>推荐用途</th></tr>
-            <tr class="S"><td>S+</td><td>RTX 5090</td><td>100%</td><td>全能旗舰</td></tr>
-            <tr class="A"><td>A</td><td>RTX 5070 Ti</td><td>72%</td><td>游戏+创作均衡</td></tr>
-            <!-- 继续添加更多行... -->
-        </table>
+        :100px 20px; font-size:1.3em;"GPU综合性能天梯图（待你上传最新数据）
+    </
+    <div ="tab-2" class="tab-content">
+        <p style="text-align:center; color:#aaa; padding:100px 20px; font-size:1.3em;">CPU 网游性能天梯图（待你上传最新数据）</p>
     </div>
-
-    <!-- Tab 内容 2: CPU 网游性能 -->
-    <div id="tab-2" class="tab-content">
-        <h2 style="text-align:center; color:var(--primary);">📊 CPU 网游性能天梯图（高帧游戏）</h2>
-        <table>
-            <tr><th>阶梯</th><th>处理器型号</th><th>相对性能</th><th>推荐用途</th></tr>
-            <tr class="S"><td>S+</td><td>Ryzen 9 9950X3D / Core Ultra 9 285K</td><td>100%</td><td>顶级游戏</td></tr>
-            <!-- 继续添加更多行... -->
-        </table>
-    </div>
-
-    <!-- Tab 内容 3: CPU 综合性能 -->
     <div id="tab-3" class="tab-content">
-        <h2 style="text-align:center; color:var(--primary);"> CPU 综合性能天梯图（生产力+创作）</h2>
-        <table>
-            <tr><th>阶梯</th><th>处理器型号</th><th>相对性能</th><th>推荐用途</th></tr>
-            <tr class="S"><td>S+</td><td>酷睿Ultra 9 285K / 锐龙9 9950X</td><td>100%</td><td>全能生产力</td></tr>
-            <!-- 继续添加更多行... -->
-        </table>
+        :100px20px; font-size:1.3em;"CPU综合性能天梯图（待你上传最新数据）</
     </div>
 
     <div class="footer">
-        数据来源：Tom's Hardware / TechPowerUp / 实际测试<br>
-        网站由 <strong>0xFFantasy</strong> 制作 · 
-        <a href="https://github.com/0xFFantasy/0xFFantasy.github.io" style="color:#00bfff;">GitHub 仓库</a>
+        后台编辑地址：<a href="https://github.com/0xFFantasy/0xFFantasy.github.io/edit/main/index.html" style="color:#00bfff;">点击这里编辑表格</a><br>
+        只有你有权限 · 搜索功能已开启 · 想加新行直接复制 &lt;tr&gt; 代码修改即可
     </div>
 
     <script>
         function switchTab(n) {
-            // 隐藏所有 tab
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            // 显示选中的 tab
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.getElementById('tab-' + n).classList.add('active');
-            
-            // 更新按钮高亮
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.tab-btn')[n].classList.add('active');
         }
-    </script>
+
+        function filterTable() {
+            const input = document.getElementById("searchInput").value.toUpperCase();
+            const table = document.getElementById("gpuTable");
+            const tr = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < tr.length; i++) {  // 从1开始跳过表头
+                const td = tr[i].getElementsByTagName("td");
+                让 匹配 = false;
+                for (let j = 0; j < td.length; j++) {
+                    如果 (td[j] && td[j].innerHTML.toUpperCase().indexOf(input) > -1) {
+                        匹配 = true;
+                         break;
+                    }
+                }
+                tr[i].style.display = match ? "" : "none";
+            }
+        }
+    script>
 </body>
-</html>
+        </html>
