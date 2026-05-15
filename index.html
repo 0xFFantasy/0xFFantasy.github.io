@@ -280,7 +280,8 @@
                 }
                 tr[i].style.display = match ? "" : "none";
             }
-            function filterComprehensiveTable() {
+         }
+        function filterComprehensiveTable() {
             const input = document.getElementById("searchComprehensive").value.toUpperCase();
             const table = document.getElementById("gpuComprehensiveTable");
             const tr = table.getElementsByTagName("tr");
@@ -296,7 +297,6 @@
                 }
                 tr[i].style.display = match ? "" : "none";
             }
-        }
         }
     script>
 </body>
