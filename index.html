@@ -313,7 +313,6 @@
       </div>
     </div>
 </div>
-
     <div id="tab-3" class="tab-content">
     <div class="test-info">
         涵盖桌面端全系列处理器
@@ -333,10 +332,10 @@
         </thead>
         <tbody>
             <!-- 顶级旗舰层 -->
-            <tr><td class="highlight">Core i9-14900KS</td><td class="amd-highlight">Threadripper 9980X</td><td>Threadripper 3990X</td></tr>
-            <tr><td class="highlight">Core i9-14900K</td><td class="amd-highlight">Threadripper 7980X</td><td>Threadripper 3970X</td></tr>
-            <tr><td class="highlight">Core i9-13900KS</td><td class="amd-highlight">Threadripper 9970X</td><td>Threadripper 3960X</td></tr>
-            <tr><td class="highlight">Core i9-13900K</td><td class="amd-highlight">Threadripper 7970X</td><td>Threadripper 2990WX</td></tr>
+            <tr><td class="intel-highlight">Core i9-14900KS</td><td class="amd-highlight">Threadripper 9980X</td><td>Threadripper 3990X</td></tr>
+            <tr><td class="intel-highlight">Core i9-14900K</td><td class="amd-highlight">Threadripper 7980X</td><td>Threadripper 3970X</td></tr>
+            <tr><td class="intel-highlight">Core i9-13900KS</td><td class="amd-highlight">Threadripper 9970X</td><td>Threadripper 3960X</td></tr>
+            <tr><td class="intel-highlight">Core i9-13900K</td><td class="amd-highlight">Threadripper 7970X</td><td>Threadripper 2990WX</td></tr>
             <tr><td>Core i9-12900KS</td><td class="amd-highlight">Threadripper 7960X</td><td>Threadripper 2970WX</td></tr>
             <tr><td>Core i9-12900K</td><td>Ryzen 9 9950X</td><td>Threadripper 1950X</td></tr>
             <tr><td>Core i7-14700K</td><td>Ryzen 9 7950X</td><td>Threadripper 1920X</td></tr>
@@ -380,7 +379,7 @@
             <tr><td>Core i3-14100</td><td></td><td>Athlon 220GE</td></tr>
             <tr><td>Core i3-13100</td><td></td><td>Athlon 200GE</td></tr>
             <tr><td>Core i3-12100</td><td></td><td></td></tr>
-            <!-- 由于快科技表格极长，此处截取核心段落以保持网页加载速度 -->
+            
         </tbody>
     </table>
 </div>
@@ -389,6 +388,23 @@
     </div>
 
     <script>
+        function filterCpuMainTable() {
+    const input = document.getElementById("searchCpuMain").value.toUpperCase();
+    const table = document.querySelector("#tab-3 .cpu-main-table");
+    const tr = table.getElementsByTagName("tr");
+    
+    for (let i = 1; i < tr.length; i++) { // 从1开始跳过表头
+        const td = tr[i].getElementsByTagName("td");
+        let match = false;
+        for (let j = 0; j < td.length; j++) {
+            if (td[j] && td[j].innerText.toUpperCase().indexOf(input) > -1) {
+                match = true;
+                break;
+            }
+        }
+        tr[i].style.display = match ? "" : "none";
+    }
+}
         function switchTab(n) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.getElementById('tab-' + n).classList.add('active');
