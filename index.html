@@ -82,20 +82,16 @@
             text-align: center; 
             border: 1px solid #333; 
         }
-        th:nth-child(1) {
-            background: #4ade80 !important; /* 亮绿色 */
-            color: #000;
-        }
-        th:nth-child(2) {
-            background: #fb923c !important; /* 橙色 */
-            color: #000;
-        }
-        th:nth-child(3) {
-            background: #00bfff !important; /* 蓝色 */
-            color: #000;
-        }
+        .nvidia-header {
+         background: #4ade80 !important; /* 亮绿色 */
+         color: #000;
+          }
         .intel-header {
          background: #00bfff !important; /* 蓝色 */
+         color: #000;
+          }
+        .amd-header {
+         background: #fb923c  !important; /* 橙色 */
          color: #000;
           }
         tr:hover { background: #2a2a2a; }
@@ -138,9 +134,9 @@
         <table id="gpuTable">
             <thead>
                 <tr>
-                    <th>NVIDIA（开启DLSS）</th>
-                    <th>AMD（开启FSR）</th>
-                    <th>Intel（2026.5已退出独立显卡市场）</th>
+                    <th class="nvidia-header">NVIDIA（开启DLSS）</th>
+                    <th class="amd-header">AMD（开启FSR）</th>
+                    <th class="intel-header">Intel（2026.5已退出独立显卡市场）</th>
                 </tr>
             </thead>
             <tbody>
@@ -210,9 +206,9 @@
         <table id="gpuComprehensiveTable">
             <thead>
                 <tr>
-                    <th>NVIDIA (综合性能)</th>
-                    <th>AMD (综合性能)</th>
-                    <th>Intel (综合性能)</th>
+                    <th class="nvidia-header">NVIDIA (综合性能)</th>
+                    <th class="amd-header">AMD (综合性能)</th>
+                    <th class="intel-header">Intel (综合性能)</th>
                 </tr>
             </thead>
             <tbody>
@@ -278,7 +274,7 @@
           <thead>
             <tr>
               <th class="intel-header">Intel (极限超频)</th>
-              <th class="brand-amd">AMD (PBO200)</th>
+              <th class="amd-header">AMD (PBO200)</th>
             </tr>
           </thead>
           <tbody>
@@ -335,7 +331,7 @@
     <table class="cpu-main-table">
         <thead>
             <tr>
-                <th style="width: 33%; background: #4ade80 !important; color: #000;">Intel (酷睿/至强)</th>
+                <th style="width: 33%; background: #00bfff !important; color: #000;">Intel (酷睿/至强)</th>
                 <th style="width: 33%; background: #fb923c !important; color: #000;">AMD (锐龙/线程撕裂者)</th>
             </tr>
         </thead>
