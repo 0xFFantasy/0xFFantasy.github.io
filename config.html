@@ -508,10 +508,11 @@
                                 <option value="默频">默频 (Stock)</option>
                                 <option value="PBO Auto">AMD PBO Auto</option>
                                 <option value="PBO 手动">AMD PBO 手动</option>
+                                <option value="AMD定频定压">AMD定频定压</option>
                                 <option value="Intel 超频">Intel 超频 (OC)</option>
                             </select>
                             <input type="text" id="pboNote" style="width: 100%; margin-top: 5px; font-size: 0.9em;" 
-                                   placeholder="选填: 例如 PBO+200 负压30, 或 全核/大小核定频">
+                                   placeholder="选填: 例如 PBO+200 全核负压30/分核负压, 或 全核/大小核定频">
                         </div>
                         <div>
                             <label>💾 内存频率 (MHz)</label>
@@ -521,10 +522,10 @@
                             <label>⏱️ 内存时序 (CL)</label>
                             <input type="text" id="ramTiming" placeholder="例如: 32-39-39-102">
                         </div>
-                        <div style="grid-column: span 2;">
+                        <div style="grid-column: span 2;width: 100%; margin-top: 5px;"">
     <label>💽 系统/游戏硬盘 (选填)</label>
     <input type="text" id="ssdModel" 
-           placeholder="例如: Samsung 990 Pro/ WD Black SN850X, 或 机械硬盘">
+           placeholder="例如: 三星990 Pro/ 西数 SN850, 或 机械硬盘"style="width: 100%; box-sizing: border-box; font-size: 1em;">
 </div>
                     </div>
                 </details>
