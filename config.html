@@ -427,157 +427,165 @@
             <span class="close" onclick="document.getElementById('dataModal').style.display='none'">&times;</span>
         </div>
         
-        <form id="benchmarkForm">
-            <!-- 自动获取的配置 -->
-            <input type="hidden" id="formCpu" name="cpu">
-            <input type="hidden" id="formGpu" name="gpu">
+       <form id="benchmarkForm">
+    <!-- 自动获取的配置 -->
+    <input type="hidden" id="formCpu" name="cpu">
+    <input type="hidden" id="formGpu" name="gpu">
+
+    <!-- 基础信息 -->
+    <div class="form-group">
+        <label>🎮 游戏/场景名称</label>
+        <input type="text" id="gameName" placeholder="例如: 黑神话：悟空, Cyberpunk 2077" required>
+    </div>
+
+    <!-- 画质预设与分辨率 -->
+    <div class="grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <div class="form-group">
+            <label>🎨 画质预设</label>
+            <select id="presetQuality" required>
+                <option value="">请选择</option>
+                <option value="低 (Low)">低 (Low)</option>
+                <option value="中 (Medium)">中 (Medium)</option>
+                <option value="高 (High)">高 (High)</option>
+                <option value="最高 (Ultra)">最高 (Ultra)</option>
+                <option value="极高 (Extreme)">极高 (Extreme)</option>
+                <option value="电影级 (Cinematic)">电影级 (Cinematic)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>📊 分辨率</label>
+            <select id="resolution" required>
+                <option value="">请选择</option>
+                <option value="1080p (1920x1080)">1080p</option>
+                <option value="2K (2560x1440)">2K</option>
+                <option value="4K (3840x2160)">4K</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <div class="form-group">
+            <label>📈 平均帧数 (FPS)</label>
+            <input type="number" id="avgFps" placeholder="例如: 144" required>
+        </div>
+        <div class="form-group">
+            <label>📉 最低帧 (Low 1%)</label>
+            <input type="number" id="lowFps" placeholder="例如: 60">
+        </div>
+    </div>
+
+    <!-- === 进阶参数：超频与内存 === -->
+    <details style="margin-top: 20px; background: #2a2a2a; padding: 15px; border-radius: 8px;">
+        <summary style="color: #00bfff; cursor: pointer; font-weight: bold;">⚙️ 硬件进阶参数 (点击展开填写)</summary>
+        
+        <div style="margin-top: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
             
-            <!-- 基础信息 -->
-            <div class="form-group">
-                <label>🎮 游戏/场景名称</label>
-                <input type="text" id="gameName" placeholder="例如: 三角洲行动, Black Myth: Wukong" required>
+            <!-- CPU 调校 (更新版) -->
+            <div style="grid-column: span 2;">
+                <label>🧠 CPU 状态</label>
+                <select id="cpuTuning" style="width: 100%;">
+                    <option value="默频">默频 (Stock)</option>
+                    <option value="PBO Auto">AMD PBO Auto</option>
+                    <option value="Intel 手动超频">Intel 手动超频 (OC)</option>
+                </select>
+                <!-- PBO 备注输入框 (仅当用户需要时填写) -->
+                <input type="text" id="pboNote" style="width: 100%; margin-top: 5px; font-size: 0.9em;" 
+                       placeholder="选填: 例如 PBO+200 负压30, 或 Curve -20">
             </div>
 
-            <div class="grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                <div class="form-group">
-                    <label>📊 平均帧数 (FPS)</label>
-                    <input type="number" id="avgFps" placeholder="例如: 144" required>
-                </div>
-                <div class="form-group">
-                    <label>🎯 最低帧 (Low 1%)</label>
-                    <input type="number" id="lowFps" placeholder="例如: 60">
-                </div>
+            <!-- 内存频率 -->
+            <div>
+                <label>💾 内存频率 (MHz)</label>
+                <input type="number" id="ramFreq" placeholder="例如: 6400">
             </div>
 
-            <div class="grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                <div class="form-group">
-                    <label>🖥️ 分辨率</label>
-                    <select id="resolution" required>
-                        <option value="">请选择</option>
-                        <option value="1080p (1920x1080)">1080p</option>
-                        <option value="2K (2560x1440)">2K</option>
-                        <option value="4K (3840x2160)">4K</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>🌡️ 温度 (CPU/GPU)</label>
-                    <input type="text" id="temps" placeholder="例如: 65°C / 55°C">
-                </div>
+            <!-- 内存时序 -->
+            <div style="grid-column: span 2;">
+                <label>⏱️ 内存时序 (CL)</label>
+                <input type="text" id="ramTiming" placeholder="例如: 32-39-39-102">
             </div>
 
-            <!-- === 进阶参数：超频与内存 === -->
-            <details style="margin-top: 20px; background: #2a2a2a; padding: 15px; border-radius: 8px;">
-                <summary style="color: #00bfff; cursor: pointer; font-weight: bold;">⚙️ 硬件进阶参数 (点击展开填写)</summary>
-                
-                <div style="margin-top: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                    
-                    <!-- CPU 调校 -->
-                    <div>
-                        <label>🧠 CPU 状态</label>
-                        <select id="cpuTuning">
-                            <option value="默频">默频 (Stock)</option>
-                            <option value="PBO Auto">AMD PBO Auto</option>
-                            <option value="PBO Curve">AMD PBO 曲线优化</option>
-                            <option value="Intel TVB">Intel TVB</option>
-                            <option value="手动超频">手动超频 (OC)</option>
-                        </select>
-                    </div>
+        </div>
+    </details>
 
-                    <!-- 内存频率 -->
-                    <div>
-                        <label>💾 内存频率 (MHz)</label>
-                        <input type="number" id="ramFreq" placeholder="例如: 6400">
-                    </div>
-
-                    <!-- 内存时序 -->
-                    <div style="grid-column: span 2;">
-                        <label>⏱️ 内存时序 (CL)</label>
-                        <input type="text" id="ramTiming" placeholder="例如: 32-39-39-102">
-                    </div>
-
-                </div>
-            </details>
-
-            <!-- 提交按钮 -->
-            <button type="submit" style="width: 100%; padding: 15px; margin-top: 20px; background: #00bfff; color: #000; border: none; border-radius: 8px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
-                🚀 生成 Issue 并上传
-            </button>
-        </form>
+    <!-- 提交按钮 -->
+    <button type="submit" style="width: 100%; padding: 15px; margin-top: 20px; background: #00bfff; color: #000; border: none; border-radius: 8px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
+        🚀 生成 Issue 并上传
+    </button>
+</form>
     </div>
 </div>
 
 <script>
 // 扩展 saveConfig 函数，或者新增一个函数来处理上传
+// 替换原有的 Form Submit 事件监听
 document.getElementById('benchmarkForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
-    // 1. 获取当前配置 (需要确保页面上已经有选择的配置)
+    // 1. 获取当前配置
     const cpu = document.getElementById('selectedCPU').textContent;
     const gpu = document.getElementById('selectedGPU').textContent;
-    
     if (cpu === '未选择' || gpu === '未选择') {
         alert('请先在上方选择 CPU 和 GPU！');
         return;
     }
 
-    // 2. 获取用户填写的实测数据
+    // 2. 获取基础实测数据
     const game = document.getElementById('gameName').value;
     const avgFps = document.getElementById('avgFps').value;
     const lowFps = document.getElementById('lowFps').value || '未知';
     const resolution = document.getElementById('resolution').value;
-    const temps = document.getElementById('temps').value || '未记录';
-    
-    // --- 获取进阶参数 ---
+    const presetQuality = document.getElementById('presetQuality').value; // 新增：画质预设
+
+    // 3. 获取进阶参数
     const cpuTuning = document.getElementById('cpuTuning').value;
+    const pboNote = document.getElementById('pboNote').value; // 新增：PBO备注
     const ramFreq = document.getElementById('ramFreq').value || '默认';
     const ramTiming = document.getElementById('ramTiming').value || '默认';
 
-    // 3. 构建 Issue 内容 (Markdown)
-    // 请替换这里的仓库信息
+    // --- 数据处理逻辑 ---
+    // 如果用户填写了 PBO 备注，将其附加到 CPU 状态后面
+    let finalCpuTuning = cpuTuning;
+    if (pboNote.trim() !== '') {
+        finalCpuTuning = `${cpuTuning} (备注: ${pboNote})`;
+    }
+
+    // 4. 构建 Issue 内容 (Markdown)
     const repoOwner = "0xFFantasy"; 
     const repoName = "0xFFantasy.github.io"; 
     
-    const title = encodeURIComponent(`📊 实测: ${cpu} + ${gpu} - ${game}`);
-    
-    const body = encodeURIComponent(`
-### 📝 实测数据报告
+    const title = encodeURIComponent(`🎮 ${game} 实测: ${cpu} @ ${presetQuality}`);
 
-| 项目 | 详情 |
+    const body = encodeURIComponent(`
+### 📊 实测数据详情
+
+| 项目 | 信息 |
 | :--- | :--- |
 | **游戏** | ${game} |
-| **配置** | ${cpu} + ${gpu} |
+| **画质** | ${presetQuality} |
+| **分辨率** | ${resolution} |
 | **平均帧** | ${avgFps} FPS |
 | **1% Low** | ${lowFps} FPS |
-| **分辨率** | ${resolution} |
-| **温度** | ${temps} |
+| **配置** | ${cpu} + ${gpu} |
+
+---
 
 ### ⚙️ 硬件调校细节
 \`\`\`
-CPU 调校: ${cpuTuning}
+CPU 状态: ${finalCpuTuning}
 内存频率: ${ramFreq} MHz
 内存时序: ${ramTiming}
 \`\`\`
-
-> **来源**: 2026 天梯图网页配置器
-> **时间**: ${new Date().toLocaleString('zh-CN')}
+> **来源**: 0xFFantasy 2026 配置器
 `);
 
-    // 4. 跳转到 GitHub New Issue
+    // 5. 跳转
     const url = `https://github.com/${repoOwner}/${repoName}/issues/new?title=${title}&body=${body}`;
     window.open(url, '_blank');
-    
-    // 关闭弹窗
     document.getElementById('dataModal').style.display = 'none';
 });
-
-// 页面加载完成后，自动填充当前时间或做一些初始化
-window.onload = function() {
-    // 原有的代码...
-    renderCPUList(cpus);
-    renderGPUList(gpus);
-    
-    // 可以在这里添加一些自动获取系统信息的逻辑（未来扩展）
-};
 </script>
 </body>
 </html>
