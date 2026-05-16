@@ -261,8 +261,17 @@
     </div>
    <div id="tab-2" class="tab-content">
     <div class="cpu-ranking-container">
-      <h3>网游性能 · CPU 天梯图</h3>
+      
       <div class="table-wrapper">
+    </div>
+        <div class="search-box">
+      <!-- 将 id 改为 searchCpuGame，函数名改为 filterCpuGameTable -->
+      <input type="text" id="searchCpuGame" placeholder="🔍 搜索 CPU 型号..." onkeyup="filterCpuGameTable()">
+      <p style="color: #666; font-size: 0.85em; margin-top: 5px;">
+        数据根据：CPU和内存超频后的网游性能
+      </p>
+    </div>
+    
         <table class="cpu-table">
           <thead>
             <tr>
@@ -393,7 +402,7 @@
             <tr><td></td><td>R5 3500/R5 2600</td><td></td></tr>
             <tr><td>i7-4820K/i5-8500/i5-9400</td><td>R5 3100/R5 1600</td></tr>
             <tr><td>i7-3930K/i7-7700K/i5-8400</td><td></td></tr>
-            <tr><td>i7-990X/i7-6700K/i5-9600T</td><td>R5 3400G/R5 3500X</td></tr>
+            <tr><td>i7-990X/i7-6700K/i5-9600T</td><td></td></tr>
             <tr><td>i7-980X/i7-4790K/i5-9500T/i5 8600T</td><td>R5 3400G/R5 2500X</td></tr>
         </tbody>
     </table>
@@ -403,6 +412,34 @@
     </div>
 
     <script>
+        function filterCpuGameTable() {
+  // 获取刚才修改的新 ID
+  const input = document.getElementById('searchCpuGame');
+  const filter = input.value.toUpperCase();
+  
+  // 获取对应的表格
+  const table = document.querySelector('#tab-2 .cpu-table'); 
+  const tbody = table ? table.getElementsByTagName('tbody')[0] : null;
+  
+  if (!tbody) return;
+  
+  const tr = tbody.getElementsByTagName('tr');
+
+  for (let i = 0; i < tr.length; i++) {
+    let foundMatch = false;
+    const tds = tr[i].getElementsByTagName('td');
+    
+    for (let j = 0; j < tds.length; j++) {
+      const td = tds[j];
+      const txtValue = td.textContent || td.innerText;
+      if (txtValue && txtValue.toUpperCase().indexOf(filter) > -1) {
+        foundMatch = true;
+        break;
+      }
+    }
+    tr[i].style.display = foundMatch ? "" : "none";
+  }
+}
         function filterCpuMainTable() {
     const input = document.getElementById("searchCpuMain").value.toUpperCase();
     const table = document.querySelector("#tab-3 .cpu-main-table");
