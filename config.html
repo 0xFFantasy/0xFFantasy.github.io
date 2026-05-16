@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主机配置 - 0xFFantasy</title>
+    <style>
+        :root { --primary: #00bfff; }
+        body { 
+            font-family: "Microsoft YaHei", system-ui, sans-serif; 
+            margin: 0; padding: 20px; 
+            background: #0f0f0f; color: #fff; 
+        }
+        h1 { text-align: center; margin: 30px 0 10px; font-size: 2.5em; }
+        .subtitle { text-align: center; color: #aaa; margin-bottom: 30px; }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto 20px;
+        }
+        .back-btn {
+            padding: 10px 20px;
+            background: #1f1f1f;
+            color: #fff;
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+
+        .preset-container {
+            max-width: 1400px;
+            margin: 0 auto 40px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .preset-btn {
+            padding: 16px 40px;
+            font-size: 1.25em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 180px;
+        }
+        .preset-btn.gaming { background: #4ade80; color: #000; }
+        .preset-btn.productivity { background: #fb923c; color: #000; }
+        .preset-btn.balanced { background: #00bfff; color: #000; }
+        .preset-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(0, 191, 255, 0.5); }
+
+        .config-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 380px;
+            gap: 30px;
+        }
+
+        .selection-panel {
+            background: #1f1f1f;
+            border-radius: 16px;
+            padding: 25px;
+        }
+        .panel-title {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .search-box {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 1.05em;
+            background: #2a2a2a;
+            border: 2px solid #00bfff;
+            border-radius: 50px;
+            color: #fff;
+            margin-bottom: 20px;
+            outline: none;
+        }
+        .hardware-list {
+            max-height: 420px;
+            overflow-y: auto;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 8px;
+        }
+        .hardware-item {
+            padding: 12px 16px;
+            margin: 4px 0;
+            background: #2a2a2a;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .hardware-item:hover {
+            background: #3a3a3a;
+        }
+        .hardware-item.selected {
+            background: var(--primary);
+            color: #000;
+            font-weight: bold;
+        }
+
+        .preview-panel {
+            background: #1f1f1f;
+            border-radius: 16px;
+            padding: 25px;
+            position: sticky;
+            top: 20px;
+        }
+        .preview-title { font-size: 1.5em; margin-bottom: 20px; text-align: center; }
+        .build-item {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .label { font-size: 0.9em; color: #aaa; }
+        .value { font-size: 1.3em; font-weight: bold; margin-top: 4px; }
+
+        .action-btn {
+            width: 100%;
+            padding: 16px;
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            background: #00bfff;
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="back-btn" onclick="goBack()">← 返回天梯图</button>
+        <h1 style="margin: 0; flex: 1; text-align: center;">🛠️ 主机配置助手 2026</h1>
+        <div></div>
+    </div>
+    <p class="subtitle">基于天梯图为你推荐最强CPU + GPU组合</p>
+
+    <!-- 自动配置预设 -->
+    <div class="preset-container">
+        <button class="preset-btn gaming" onclick="loadPreset('gaming')">🎮 游戏主导</button>
+        <button class="preset-btn productivity" onclick="loadPreset('productivity')">💼 办公主导</button>
+        <button class="preset-btn balanced" onclick="loadPreset('balanced')">⚖️ 综合主导</button>
+    </div>
+
+    <div class="config-container">
+        <!-- CPU 选择 -->
+        <div class="selection-panel">
+            <div class="panel-title">
+                <span>🧠</span>
+                <span>CPU 选择</span>
+            </div>
+            <input type="text" id="cpuSearch" class="search-box" placeholder="搜索CPU型号（如 9850X3D、14900K）..." onkeyup="filterCPU()">
+            <div id="cpuList" class="hardware-list"></div>
+        </div>
+
+        <!-- GPU 选择 -->
+        <div class="selection-panel">
+            <div class="panel-title">
+                <span>🎮</span>
+                <span>GPU 选择</span>
+            </div>
+            <input type="text" id="gpuSearch" class="search-box" placeholder="搜索显卡型号（如 RTX 5090、RX 7900XTX）..." onkeyup="filterGPU()">
+            <div id="gpuList" class="hardware-list"></div>
+        </div>
+
+        <!-- 配置预览 -->
+        <div class="preview-panel">
+            <div class="preview-title">📋 你的配置</div>
+            
+            <div class="build-item">
+                <div class="label">CPU</div>
+                <div id="selectedCPU" class="value">未选择</div>
+            </div>
+            
+            <div class="build-item">
+                <div class="label">GPU</div>
+                <div id="selectedGPU" class="value">未选择</div>
+            </div>
+
+            <div style="margin-top: 25px; font-size: 0.95em; color: #0f0; line-height: 1.5;">
+                💡 提示：点击左侧列表选择硬件<br>或使用上方预设按钮快速生成推荐配置
+            </div>
+
+            <button class="action-btn" onclick="saveConfig()">💾 保存此配置</button>
+            <button class="action-btn" style="background:#fb923c; margin-top:10px;" onclick="resetConfig()">🔄 重置配置</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        0xFFantasy 主机配置工具 | 持续更新中
+    </div>
+
+    <script>
+        // 从天梯图提取的主要型号（可继续扩展）
+        const cpus = [
+            "R7 9850X3D", "R9 9950X3D", "R7 9800X3D", "R7 7800X3D", 
+            "Ultra 9 285K", "Ultra 7 270K Plus", "i9-14900K", "i9-13900K",
+            "R9 9950X", "R9 7950X3D", "R7 9700X", "R5 9600X3D",
+            "i7-14700K", "i5-14600K", "R5 7600X", "R7 7700",
+            "Threadripper 9980X", "Threadripper 7980X", "Threadripper 9970X",
+            "i9-14900KS", "Ultra 7 265K", "R9 7900X", "i7-13700K"
+        ];
+
+        const gpus = [
+            "RTX 5090", "RTX 4090", "RTX 5080", "RTX 4080Super", "RTX 4080",
+            "RTX 5070Ti", "RTX 4070Ti Super", "RTX 4070Ti", "RTX 5070",
+            "RX 7900XTX", "RX 9070XT", "RX 9070", "RX 7900XT", "RX 7900 GRE",
+            "RTX 4070Super", "RX 7800XT", "RTX 5060Ti 16GB", "RX 7700XT",
+            "RTX 4060Ti 16GB", "RX 6800XT", "Arc B580", "Arc A770"
+        ];
+
+        let selectedCPU = null;
+        let selectedGPU = null;
+
+        function renderCPUList(filtered) {
+            const container = document.getElementById('cpuList');
+            container.innerHTML = '';
+            filtered.forEach(cpu => {
+                const div = document.createElement('div');
+                div.className = `hardware-item ${selectedCPU === cpu ? 'selected' : ''}`;
+                div.textContent = cpu;
+                div.onclick = () => selectCPU(cpu);
+                container.appendChild(div);
+            });
+            if (filtered.length === 0) container.innerHTML = '<div style="padding:20px;text-align:center;color:#666;">没有找到匹配的CPU</div>';
+        }
+
+        function renderGPUList(filtered) {
+            const container = document.getElementById('gpuList');
+            container.innerHTML = '';
+            filtered.forEach(gpu => {
+                const div = document.createElement('div');
+                div.className = `hardware-item ${selectedGPU === gpu ? 'selected' : ''}`;
+                div.textContent = gpu;
+                div.onclick = () => selectGPU(gpu);
+                container.appendChild(div);
+            });
+            if (filtered.length === 0) container.innerHTML = '<div style="padding:20px;text-align:center;color:#666;">没有找到匹配的显卡</div>';
+        }
+
+        function filterCPU() {
+            const query = document.getElementById('cpuSearch').value.toUpperCase();
+            const filtered = cpus.filter(cpu => cpu.toUpperCase().includes(query));
+            renderCPUList(filtered);
+        }
+
+        function filterGPU() {
+            const query = document.getElementById('gpuSearch').value.toUpperCase();
+            const filtered = gpus.filter(gpu => gpu.toUpperCase().includes(query));
+            renderGPUList(filtered);
+        }
+
+        function selectCPU(cpu) {
+            selectedCPU = cpu;
+            document.getElementById('selectedCPU').textContent = cpu;
+            renderCPUList(cpus);
+        }
+
+        function selectGPU(gpu) {
+            selectedGPU = gpu;
+            document.getElementById('selectedGPU').textContent = gpu;
+            renderGPUList(gpus);
+        }
+
+        function loadPreset(type) {
+            if (type === 'gaming') {
+                selectedCPU = "R7 9850X3D";
+                selectedGPU = "RTX 5090";
+            } else if (type === 'productivity') {
+                selectedCPU = "Threadripper 9980X";
+                selectedGPU = "RTX 5090";
+            } else if (type === 'balanced') {
+                selectedCPU = "R7 7800X3D";
+                selectedGPU = "RTX 5080";
+            }
+            document.getElementById('selectedCPU').textContent = selectedCPU;
+            document.getElementById('selectedGPU').textContent = selectedGPU;
+            renderCPUList(cpus);
+            renderGPUList(gpus);
+            document.querySelector('.preview-panel').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetConfig() {
+            selectedCPU = selectedGPU = null;
+            document.getElementById('selectedCPU').textContent = "未选择";
+            document.getElementById('selectedGPU').textContent = "未选择";
+            document.getElementById('cpuSearch').value = '';
+            document.getElementById('gpuSearch').value = '';
+            renderCPUList(cpus);
+            renderGPUList(gpus);
+        }
+
+        function saveConfig() {
+            if (!selectedCPU || !selectedGPU) {
+                alert("请至少选择一个CPU和GPU！");
+                return;
+            }
+            const config = { cpu: selectedCPU, gpu: selectedGPU, time: new Date().toLocaleString('zh-CN') };
+            let history = JSON.parse(localStorage.getItem('pcConfigs') || '[]');
+            history.unshift(config);
+            localStorage.setItem('pcConfigs', JSON.stringify(history.slice(0, 5)));
+            alert(`✅ 配置已保存！\n\nCPU: ${selectedCPU}\nGPU: ${selectedGPU}\n\n历史记录已保存，可下次打开配置页查看。`);
+        }
+
+        function goBack() {
+            window.opener ? window.close() : (window.location.href = 'index.html');
+        }
+
+        window.onload = () => {
+            renderCPUList(cpus);
+            renderGPUList(gpus);
+        };
+    </script>
+</body>
+</html>
