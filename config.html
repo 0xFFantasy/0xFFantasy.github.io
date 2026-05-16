@@ -6,87 +6,85 @@
     <title>主机配置 - 0xFFantasy</title>
     <style>
         /* === 实测数据上传器样式 === */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    justify-content: center;
-    align-items: center;
-}
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
 
-.modal-content {
-    background-color: #1f1f1f;
-    padding: 30px;
-    border-radius: 16px;
-    width: 90%;
-    max-width: 600px;
-    box-shadow: 0 0 30px rgba(0, 191, 255, 0.3);
-    max-height: 90vh;
-    overflow-y: auto;
-    border: 1px solid #333;
-}
+        .modal-content {
+            background-color: #1f1f1f;
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 0 30px rgba(0, 191, 255, 0.3);
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid #333;
+        }
 
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #333;
-}
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+        }
 
-.close {
-    color: #aaa;
-    font-size: 1.5em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
+        .close {
+            color: #aaa;
+            font-size: 1.5em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-.close:hover { color: #00bfff; }
+        .close:hover { color: #00bfff; }
 
-.form-group {
-    margin-bottom: 15px;
-}
+        .form-group {
+            margin-bottom: 15px;
+        }
 
-.form-group label {
-    display: block;
-    color: #aaa;
-    margin-bottom: 5px;
-    font-size: 0.9em;
-}
+        .form-group label {
+            display: block;
+            color: #aaa;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    background: #2a2a2a;
-    border: 1px solid #555;
-    color: #fff;
-    border-radius: 8px;
-    font-size: 1em;
-}
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background: #2a2a2a;
+            border: 1px solid #555;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 1em;
+        }
 
-/* 自定义下拉框样式 (如果浏览器支持) */
-.form-group select {
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23aaa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 16px;
-}
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23aaa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+        }
 
-/* 响应式调整 */
-@media (max-width: 480px) {
-    .modal-content { width: 95%; padding: 20px; }
-    .grid-2 { grid-template-columns: 1fr; }
-}
+        @media (max-width: 480px) {
+            .modal-content { width: 95%; padding: 20px; }
+        }
+
         :root { --primary: #00bfff; }
         body { 
             font-family: "Microsoft YaHei", system-ui, sans-serif; 
@@ -135,46 +133,54 @@
         .preset-btn.balanced { background: #00bfff; color: #000; }
         .preset-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(0, 191, 255, 0.5); }
 
+        /* ==================== 新三栏布局 ==================== */
         .config-container {
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1fr 380px;
-            gap: 30px;
+            grid-template-columns: 380px 1fr 380px;   /* 左侧CPU/GPU | 中间配置 | 右侧上传 */
+            gap: 25px;
+            align-items: start;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .selection-panel {
             background: #1f1f1f;
             border-radius: 16px;
-            padding: 25px;
+            padding: 18px;
         }
         .panel-title {
-            font-size: 1.4em;
-            margin-bottom: 15px;
+            font-size: 1.35em;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         .search-box {
             width: 100%;
-            padding: 14px 18px;
+            padding: 13px 18px;
             font-size: 1.05em;
             background: #2a2a2a;
             border: 2px solid #00bfff;
             border-radius: 50px;
             color: #fff;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             outline: none;
         }
         .hardware-list {
-            max-height: 420px;
+            max-height: 235px;       /* 缩短列表，让CPU+GPU一屏可见 */
             overflow-y: auto;
             border: 1px solid #333;
             border-radius: 12px;
-            padding: 8px;
+            padding: 6px;
         }
         .hardware-item {
-            padding: 12px 16px;
+            padding: 11px 15px;
             margin: 4px 0;
             background: #2a2a2a;
             border-radius: 8px;
@@ -190,14 +196,20 @@
             font-weight: bold;
         }
 
+        /* 中间：配置预览（更高） */
         .preview-panel {
             background: #1f1f1f;
             border-radius: 16px;
             padding: 25px;
             position: sticky;
             top: 20px;
+            height: fit-content;
         }
-        .preview-title { font-size: 1.5em; margin-bottom: 20px; text-align: center; }
+        .preview-title { 
+            font-size: 1.5em; 
+            margin-bottom: 20px; 
+            text-align: center; 
+        }
         .build-item {
             background: #2a2a2a;
             padding: 15px;
@@ -219,6 +231,17 @@
             border-radius: 50px;
             cursor: pointer;
         }
+
+        /* 右侧：上传数据区域 */
+        .upload-area {
+            background: #1f1f1f;
+            border-radius: 16px;
+            padding: 25px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
         .footer {
             text-align: center;
             margin-top: 60px;
@@ -242,36 +265,30 @@
     </div>
 
     <div class="config-container">
-        <!-- CPU 选择 -->
-        <div class="selection-panel">
-            <div class="panel-title">
-                <span>🧠</span>
-                <span>CPU 选择</span>
+        <!-- 左侧：CPU + GPU 垂直排列 -->
+        <div class="left-column">
+            <!-- CPU 选择 -->
+            <div class="selection-panel">
+                <div class="panel-title">
+                    <span>🧠</span>
+                    <span>CPU 选择</span>
+                </div>
+                <input type="text" id="cpuSearch" class="search-box" placeholder="搜索CPU型号（如 9850X3D、14900K）..." onkeyup="filterCPU()">
+                <div id="cpuList" class="hardware-list"></div>
             </div>
-            <input type="text" id="cpuSearch" class="search-box" placeholder="搜索CPU型号（如 9850X3D、14900K）..." onkeyup="filterCPU()">
-            <div id="cpuList" class="hardware-list"></div>
+
+            <!-- GPU 选择 -->
+            <div class="selection-panel">
+                <div class="panel-title">
+                    <span>🎮</span>
+                    <span>GPU 选择</span>
+                </div>
+                <input type="text" id="gpuSearch" class="search-box" placeholder="搜索显卡型号（如 RTX 5090、RX 7900XTX）..." onkeyup="filterGPU()">
+                <div id="gpuList" class="hardware-list"></div>
+            </div>
         </div>
 
-        <!-- GPU 选择 -->
-        <div class="selection-panel">
-            <div class="panel-title">
-                <span>🎮</span>
-                <span>GPU 选择</span>
-            </div>
-            <input type="text" id="gpuSearch" class="search-box" placeholder="搜索显卡型号（如 RTX 5090、RX 7900XTX）..." onkeyup="filterGPU()">
-            <div id="gpuList" class="hardware-list"></div>
-        </div>
-
-        <!-- 配置预览 -->
-        <div style="margin-top: 30px; padding: 15px; background: #2a2a2a; border-radius: 12px;">
-        <div style="font-size: 0.9em; color: #00bfff; margin-bottom: 10px;">📊 分享你的实测</div>
-        <button onclick="document.getElementById('dataModal').style.display='flex'" style="width: 100%; padding: 12px; background: #00bfff; color: #000; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">
-        📤 上传实测数据 (含超频/内存)
-         </button>
-        <div style="font-size: 0.8em; color: #666; margin-top: 10px;">
-        提供便捷给更多人
-        </div>
-       </div>
+        <!-- 中间：你的配置预览 -->
         <div class="preview-panel">
             <div class="preview-title">📋 你的配置</div>
             
@@ -292,6 +309,18 @@
             <button class="action-btn" onclick="saveConfig()">💾 保存此配置</button>
             <button class="action-btn" style="background:#fb923c; margin-top:10px;" onclick="resetConfig()">🔄 重置配置</button>
         </div>
+
+        <!-- 右侧：上传实测数据 -->
+        <div class="upload-area">
+            <div style="font-size: 1.1em; color: #00bfff; margin-bottom: 15px; text-align: center;">📊 分享你的实测</div>
+            <button onclick="document.getElementById('dataModal').style.display='flex'" 
+                    style="width: 100%; padding: 18px; background: #00bfff; color: #000; border: none; border-radius: 12px; font-weight: bold; font-size: 1.1em; cursor: pointer;">
+                📤 上传实测数据<br><span style="font-size:0.85em; opacity:0.9;">(含超频/内存)</span>
+            </button>
+            <div style="font-size: 0.85em; color: #666; margin-top: 12px; text-align: center;">
+                您的数据将帮助更多人
+            </div>
+        </div>
     </div>
 
     <div class="footer">
@@ -299,7 +328,6 @@
     </div>
 
     <script>
-        // 从天梯图提取的主要型号（可继续扩展）
         const cpus = [
             "R7 9850X3D", "R9 9950X3D", "R7 9800X3D", "R7 7800X3D", 
             "Ultra 9 285K", "Ultra 7 270K Plus", "i9-14900K", "i9-13900K",
@@ -385,7 +413,6 @@
             document.getElementById('selectedGPU').textContent = selectedGPU;
             renderCPUList(cpus);
             renderGPUList(gpus);
-            document.querySelector('.preview-panel').scrollIntoView({ behavior: 'smooth' });
         }
 
         function resetConfig() {
@@ -419,146 +446,122 @@
             renderGPUList(gpus);
         };
     </script>
+
     <!-- === 实测数据上传弹窗 (Modal) === -->
-<div id="dataModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3 style="color: #00bfff; margin: 0;">📈 上传你的实测数据</h3>
-            <span class="close" onclick="document.getElementById('dataModal').style.display='none'">&times;</span>
-        </div>
-        
-       <form id="benchmarkForm">
-    <!-- 自动获取的配置 -->
-    <input type="hidden" id="formCpu" name="cpu">
-    <input type="hidden" id="formGpu" name="gpu">
-
-    <!-- 基础信息 -->
-    <div class="form-group">
-        <label>🎮 游戏/场景名称</label>
-        <input type="text" id="gameName" placeholder="例如: 黑神话：悟空, Cyberpunk 2077" required>
-    </div>
-
-    <!-- 画质预设与分辨率 -->
-    <div class="grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-        
-        <div class="form-group">
-            <label>🎨 画质预设</label>
-            <select id="presetQuality" required>
-                <option value="">请选择</option>
-                <option value="低 (Low)">低 (Low)</option>
-                <option value="中 (Medium)">中 (Medium)</option>
-                <option value="高 (High)">高 (High)</option>
-                <option value="最高 (Ultra)">最高 (Ultra)</option>
-                <option value="极高 (Extreme)">极高 (Extreme)</option>
-                <option value="电影级 (Cinematic)">电影级 (Cinematic)</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label>📊 分辨率</label>
-            <select id="resolution" required>
-                <option value="">请选择</option>
-                <option value="1080p (1920x1080)">1080p</option>
-                <option value="2K (2560x1440)">2K</option>
-                <option value="4K (3840x2160)">4K</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-        <div class="form-group">
-            <label>📈 平均帧数 (FPS)</label>
-            <input type="number" id="avgFps" placeholder="例如: 144" required>
-        </div>
-        <div class="form-group">
-            <label>📉 最低帧 (Low 1%)</label>
-            <input type="number" id="lowFps" placeholder="例如: 60">
-        </div>
-    </div>
-
-    <!-- === 进阶参数：超频与内存 === -->
-    <details style="margin-top: 20px; background: #2a2a2a; padding: 15px; border-radius: 8px;">
-        <summary style="color: #00bfff; cursor: pointer; font-weight: bold;">⚙️ 硬件进阶参数 (点击展开填写)</summary>
-        
-        <div style="margin-top: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+    <div id="dataModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 style="color: #00bfff; margin: 0;">📈 上传你的实测数据</h3>
+                <span class="close" onclick="document.getElementById('dataModal').style.display='none'">&times;</span>
+            </div>
             
-            <!-- CPU 调校 (更新版) -->
-            <div style="grid-column: span 2;">
-                <label>🧠 CPU 状态</label>
-                <select id="cpuTuning" style="width: 100%;">
-                    <option value="默频">默频 (Stock)</option>
-                    <option value="PBO Auto">AMD PBO Auto</option>
-                    <option value="Intel 手动超频">Intel 手动超频 (OC)</option>
-                </select>
-                <!-- PBO 备注输入框 (仅当用户需要时填写) -->
-                <input type="text" id="pboNote" style="width: 100%; margin-top: 5px; font-size: 0.9em;" 
-                       placeholder="选填: 例如 PBO+200 负压30, 或 Curve -20">
-            </div>
+            <form id="benchmarkForm">
+                <input type="hidden" id="formCpu" name="cpu">
+                <input type="hidden" id="formGpu" name="gpu">
 
-            <!-- 内存频率 -->
-            <div>
-                <label>💾 内存频率 (MHz)</label>
-                <input type="number" id="ramFreq" placeholder="例如: 6400">
-            </div>
+                <div class="form-group">
+                    <label>🎮 游戏/场景名称</label>
+                    <input type="text" id="gameName" placeholder="例如: 黑神话：悟空, Cyberpunk 2077" required>
+                </div>
 
-            <!-- 内存时序 -->
-            <div style="grid-column: span 2;">
-                <label>⏱️ 内存时序 (CL)</label>
-                <input type="text" id="ramTiming" placeholder="例如: 32-39-39-102">
-            </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>🎨 画质预设</label>
+                        <select id="presetQuality" required>
+                            <option value="">请选择</option>
+                            <option value="低 (Low)">低 (Low)</option>
+                            <option value="中 (Medium)">中 (Medium)</option>
+                            <option value="高 (High)">高 (High)</option>
+                            <option value="最高 (Ultra)">最高 (Ultra)</option>
+                            <option value="极高 (Extreme)">极高 (Extreme)</option>
+                            <option value="电影级 (Cinematic)">电影级 (Cinematic)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>📊 分辨率</label>
+                        <select id="resolution" required>
+                            <option value="">请选择</option>
+                            <option value="1080p (1920x1080)">1080p</option>
+                            <option value="2K (2560x1440)">2K</option>
+                            <option value="4K (3840x2160)">4K</option>
+                        </select>
+                    </div>
+                </div>
 
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>📈 平均帧数 (FPS)</label>
+                        <input type="number" id="avgFps" placeholder="例如: 144" required>
+                    </div>
+                    <div class="form-group">
+                        <label>📉 最低帧 (Low 1%) </label>
+                        <input type="number" id="lowFps" placeholder="例如: 60">
+                    </div>
+                </div>
+
+                <details style="margin-top: 20px; background: #2a2a2a; padding: 15px; border-radius: 8px;">
+                    <summary style="color: #00bfff; cursor: pointer; font-weight: bold;">⚙️ 硬件进阶参数 (点击展开填写)</summary>
+                    <div style="margin-top: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div style="grid-column: span 2;">
+                            <label>🧠 CPU 状态</label>
+                            <select id="cpuTuning" style="width: 100%;">
+                                <option value="默频">默频 (Stock)</option>
+                                <option value="PBO Auto">AMD PBO Auto</option>
+                                <option value="Intel 手动超频">Intel 手动超频 (OC)</option>
+                            </select>
+                            <input type="text" id="pboNote" style="width: 100%; margin-top: 5px; font-size: 0.9em;" 
+                                   placeholder="选填: 例如 PBO+200 负压30, 或 Curve -20">
+                        </div>
+                        <div>
+                            <label>💾 内存频率 (MHz)</label>
+                            <input type="number" id="ramFreq" placeholder="例如: 6400">
+                        </div>
+                        <div style="grid-column: span 2;">
+                            <label>⏱️ 内存时序 (CL)</label>
+                            <input type="text" id="ramTiming" placeholder="例如: 32-39-39-102">
+                        </div>
+                    </div>
+                </details>
+
+                <button type="submit" style="width: 100%; padding: 15px; margin-top: 20px; background: #00bfff; color: #000; border: none; border-radius: 8px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
+                    🚀 生成 Issue 并上传
+                </button>
+            </form>
         </div>
-    </details>
-
-    <!-- 提交按钮 -->
-    <button type="submit" style="width: 100%; padding: 15px; margin-top: 20px; background: #00bfff; color: #000; border: none; border-radius: 8px; font-size: 1.1em; font-weight: bold; cursor: pointer;">
-        🚀 生成 Issue 并上传
-    </button>
-</form>
     </div>
-</div>
 
-<script>
-// 扩展 saveConfig 函数，或者新增一个函数来处理上传
-// 替换原有的 Form Submit 事件监听
-document.getElementById('benchmarkForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // 1. 获取当前配置
-    const cpu = document.getElementById('selectedCPU').textContent;
-    const gpu = document.getElementById('selectedGPU').textContent;
-    if (cpu === '未选择' || gpu === '未选择') {
-        alert('请先在上方选择 CPU 和 GPU！');
-        return;
-    }
+    <script>
+        // 上传弹窗逻辑
+        document.getElementById('benchmarkForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const cpu = document.getElementById('selectedCPU').textContent;
+            const gpu = document.getElementById('selectedGPU').textContent;
+            if (cpu === '未选择' || gpu === '未选择') {
+                alert('请先在上方选择 CPU 和 GPU！');
+                return;
+            }
 
-    // 2. 获取基础实测数据
-    const game = document.getElementById('gameName').value;
-    const avgFps = document.getElementById('avgFps').value;
-    const lowFps = document.getElementById('lowFps').value || '未知';
-    const resolution = document.getElementById('resolution').value;
-    const presetQuality = document.getElementById('presetQuality').value; // 新增：画质预设
+            const game = document.getElementById('gameName').value;
+            const avgFps = document.getElementById('avgFps').value;
+            const lowFps = document.getElementById('lowFps').value || '未知';
+            const resolution = document.getElementById('resolution').value;
+            const presetQuality = document.getElementById('presetQuality').value;
 
-    // 3. 获取进阶参数
-    const cpuTuning = document.getElementById('cpuTuning').value;
-    const pboNote = document.getElementById('pboNote').value; // 新增：PBO备注
-    const ramFreq = document.getElementById('ramFreq').value || '默认';
-    const ramTiming = document.getElementById('ramTiming').value || '默认';
+            const cpuTuning = document.getElementById('cpuTuning').value;
+            const pboNote = document.getElementById('pboNote').value;
+            const ramFreq = document.getElementById('ramFreq').value || '默认';
+            const ramTiming = document.getElementById('ramTiming').value || '默认';
 
-    // --- 数据处理逻辑 ---
-    // 如果用户填写了 PBO 备注，将其附加到 CPU 状态后面
-    let finalCpuTuning = cpuTuning;
-    if (pboNote.trim() !== '') {
-        finalCpuTuning = `${cpuTuning} (备注: ${pboNote})`;
-    }
+            let finalCpuTuning = cpuTuning;
+            if (pboNote.trim() !== '') {
+                finalCpuTuning = `${cpuTuning} (备注: ${pboNote})`;
+            }
 
-    // 4. 构建 Issue 内容 (Markdown)
-    const repoOwner = "0xFFantasy"; 
-    const repoName = "0xFFantasy.github.io"; 
-    
-    const title = encodeURIComponent(`🎮 ${game} 实测: ${cpu} @ ${presetQuality}`);
-
-    const body = encodeURIComponent(`
+            const repoOwner = "0xFFantasy"; 
+            const repoName = "0xFFantasy.github.io"; 
+            
+            const title = encodeURIComponent(`🎮 ${game} 实测: ${cpu} @ ${presetQuality}`);
+            const body = encodeURIComponent(`
 ### 📊 实测数据详情
 
 | 项目 | 信息 |
@@ -581,11 +584,10 @@ CPU 状态: ${finalCpuTuning}
 > **来源**: 0xFFantasy 2026 配置器
 `);
 
-    // 5. 跳转
-    const url = `https://github.com/${repoOwner}/${repoName}/issues/new?title=${title}&body=${body}`;
-    window.open(url, '_blank');
-    document.getElementById('dataModal').style.display = 'none';
-});
-</script>
+            const url = `https://github.com/${repoOwner}/${repoName}/issues/new?title=${title}&body=${body}`;
+            window.open(url, '_blank');
+            document.getElementById('dataModal').style.display = 'none';
+        });
+    </script>
 </body>
 </html>
