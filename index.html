@@ -5,6 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>显卡天梯图 2026 - 0xFFantasy</title>
     <style>
+        /* === 2026 悬浮配置按钮 === */
+      .floating-config-btn {
+      position: fixed;
+      right: 30px;
+      bottom: 30px;
+      /* 布局 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+       /* 样式 */
+      background: linear-gradient(135deg, #00bfff 0%, #0088cc 100%);
+      color: #000;
+      padding: 15px 25px;
+      border-radius: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 
+        0 0 20px rgba(0, 191, 255, 0.5),
+        0 0 40px rgba(0, 191, 255, 0.2);
+      z-index: 1000;
+      font-size: 1em;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+      
+      animation: floatBtn 3s ease-in-out infinite;
+      }
+
+
+.floating-config-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 
+        0 10px 30px rgba(0, 191, 255, 0.7),
+        0 0 60px rgba(0, 191, 255, 0.5);
+    text-decoration: none;
+    color: #000;
+}
+
+/* 按钮文字 */
+.floating-config-btn .btn-text {
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.floating-config-btn .btn-subtext {
+    font-size: 0.8em;
+    opacity: 0.9;
+    margin: 0;
+    font-style: italic;
+}
+
+/* 呼吸动画 */
+@keyframes floatBtn {
+    0% { box-shadow: 0 0 20px rgba(0, 191, 255, 0.5), 0 0 40px rgba(0, 191, 255, 0.2); }
+    50% { box-shadow: 0 0 30px rgba(0, 191, 255, 0.7), 0 0 60px rgba(0, 191, 255, 0.4); }
+    100% { box-shadow: 0 0 20px rgba(0, 191, 255, 0.5), 0 0 40px rgba(0, 191, 255, 0.2); }
+}
+
+/* 响应式：在小屏幕上调整位置 */
+@media (max-width: 768px) {
+    .floating-config-btn {
+        right: 15px;
+        bottom: 15px;
+        padding: 12px 20px;
+        font-size: 0.95em;
+    }
+}
         :root { --primary: #00bfff; }
         body { 
             font-family: "Microsoft YaHei", system-ui, sans-serif; 
@@ -497,5 +564,9 @@
             }
         }
     </script>
+    <a href="config.html" class="floating-config-btn" target="_blank">
+    <p class="btn-text">🚀 开启专属配置</p>
+    <p class="btn-subtext">点击进入配置器</p>
+</a>
 </body>
 </html>
