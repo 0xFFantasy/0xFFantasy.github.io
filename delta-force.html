@@ -5,20 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>三角洲行动 75款显卡专栏 - 0xFFantasy</title>
     <style>
-        body { font-family: "Microsoft YaHei", sans-serif; background: #0f0f0f; color: #eee; margin: 0; padding: 20px; }
-        h1 { text-align: center; color: #00ff9d; }
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #1a1a1a; }
-        th, td { padding: 12px; text-align: left; border: 1px solid #333; }
-        th { background: #00b8ff; color: black; }
-        tr:nth-child(even) { background: #252525; }
-        .back { text-align: center; margin: 30px; }
-        .back a { color: #00ff9d; font-size: 18px; }
+        body {
+            font-family: "Microsoft YaHei", system-ui, sans-serif;
+            background: #0a0a0a;
+            color: #eee;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            color: #00ff9d;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        th, td {
+            padding: 12px 10px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        th {
+            background: linear-gradient(90deg, #00b8ff, #0099ff);
+            color: black;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        tr:nth-child(even) { background: #222; }
+        tr:hover { background: #334; }
+        .top3 { background: #2a1a00 !important; font-weight: bold; }
+        .back {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .back a {
+            color: #00ff9d;
+            font-size: 18px;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
     <h1>🎮 《三角洲行动》75款主流消费级显卡性能榜</h1>
-    <p style="text-align:center;">1080p 全分辨率实测 · 数据来源：B站 0xFFantasy 测试</p>
-    
+    <p class="subtitle">1080p 分辨率实测 · 数据来源：B站视频测试（2026年）</p>
+
     <table>
         <thead>
             <tr>
@@ -29,9 +71,81 @@
             </tr>
         </thead>
         <tbody>
-            <!-- 这里我会把完整75款表格放进去，太长我先给你框架，你确认后我再发完整版 -->
-            <tr><td>1</td><td><strong>RTX 5090 32G</strong></td><td>189</td><td>363</td></tr>
-            <!-- ... 其余73行 ... -->
+            <tr class="top3"><td>1</td><td><strong>RTX 5090 32G</strong></td><td>189</td><td>363</td></tr>
+            <tr class="top3"><td>2</td><td><strong>RTX 5090D V2 24G</strong></td><td>180</td><td>362</td></tr>
+            <tr class="top3"><td>3</td><td><strong>RTX 4080 SUPER 16G</strong></td><td>196</td><td>361</td></tr>
+            <tr><td>4</td><td>RTX 4090 24G</td><td>200</td><td>360</td></tr>
+            <tr><td>5</td><td>RTX 5080 16G</td><td>180</td><td>360</td></tr>
+            <tr><td>6</td><td>RTX 5070 Ti 16G</td><td>168</td><td>353</td></tr>
+            <tr><td>7</td><td>RTX 4080 16G</td><td>192</td><td>346</td></tr>
+            <tr><td>8</td><td>RTX 4070 Ti SUPER 16G</td><td>181</td><td>326</td></tr>
+            <tr><td>9</td><td>RX 7900 XTX 24G</td><td>185</td><td>325</td></tr>
+            <tr><td>10</td><td>RX 9070 16G</td><td>202</td><td>319</td></tr>
+            <tr><td>11</td><td>RX 9070 XT 16G</td><td>172</td><td>314</td></tr>
+            <tr><td>12</td><td>RTX 5070 Ti 12G</td><td>162</td><td>307</td></tr>
+            <tr><td>13</td><td>RTX 4070 Ti 12G</td><td>175</td><td>302</td></tr>
+            <tr><td>14</td><td>RTX 3090 Ti 24G</td><td>186</td><td>294</td></tr>
+            <tr><td>15</td><td>RTX 4070 SUPER 12G</td><td>178</td><td>292</td></tr>
+            <tr><td>16</td><td>RX 9070 GRE 12G</td><td>184</td><td>286</td></tr>
+            <tr><td>17</td><td>RTX 3090 24G</td><td>175</td><td>278</td></tr>
+            <tr><td>18</td><td>RX 7900 XT 20G</td><td>174</td><td>278</td></tr>
+            <tr><td>19</td><td>RTX 3080 Ti 12G</td><td>175</td><td>276</td></tr>
+            <tr><td>20</td><td>RX 6950 XT 16G</td><td>182</td><td>267</td></tr>
+            <tr><td>21</td><td>RX 7800 XT 16G</td><td>175</td><td>260</td></tr>
+            <tr><td>22</td><td>RTX 4070 12G</td><td>163</td><td>259</td></tr>
+            <tr><td>23</td><td>RX 7900 GRE 16G</td><td>171</td><td>255</td></tr>
+            <tr><td>24</td><td>RX 6900 XT 16G</td><td>167</td><td>253</td></tr>
+            <tr><td>25</td><td>RTX 3080 10G</td><td>158</td><td>245</td></tr>
+            <tr><td>26</td><td>RX 6800 XT 16G</td><td>158</td><td>244</td></tr>
+            <tr><td>27</td><td>RTX 5060 Ti 16G</td><td>166</td><td>233</td></tr>
+            <tr><td>28</td><td>RTX 5060 Ti 8G</td><td>155</td><td>227</td></tr>
+            <tr><td>29</td><td>RX 7700 XT 12G</td><td>158</td><td>218</td></tr>
+            <tr><td>30</td><td>RTX 3070 Ti 8G</td><td>157</td><td>216</td></tr>
+            <tr><td>31</td><td>RX 9060 XT 16G</td><td>158</td><td>208</td></tr>
+            <tr><td>32</td><td>RTX 2080 Ti 11G</td><td>143</td><td>206</td></tr>
+            <tr><td>33</td><td>RX 9060 XT 8G</td><td>154</td><td>204</td></tr>
+            <tr><td>34</td><td>RTX 5060 8G</td><td>147</td><td>203</td></tr>
+            <tr><td>35</td><td>RTX 3070 8G</td><td>144</td><td>198</td></tr>
+            <tr><td>36</td><td>RX 6800 16G</td><td>144</td><td>198</td></tr>
+            <tr><td>37</td><td>RTX 4060 Ti 16G</td><td>142</td><td>194</td></tr>
+            <tr><td>38</td><td>RTX 3060 Ti 6GX 8G</td><td>133</td><td>177</td></tr>
+            <tr><td>39</td><td>RTX 3060 Ti 6G 8G</td><td>125</td><td>169</td></tr>
+            <tr><td>40</td><td>RTX 2080 SUPER 8G</td><td>118</td><td>167</td></tr>
+            <tr><td>41</td><td>RTX 2080 8G</td><td>125</td><td>166</td></tr>
+            <tr><td>42</td><td>RX 6750 GRE 12G</td><td>120</td><td>160</td></tr>
+            <tr><td>43</td><td>RX 6750 XT 12G</td><td>120</td><td>159</td></tr>
+            <tr><td>44</td><td>RX 6700 XT 12G</td><td>119</td><td>155</td></tr>
+            <tr><td>45</td><td>RTX 4060 8G</td><td>114</td><td>152</td></tr>
+            <tr><td>46</td><td>RTX 5050 8G</td><td>105</td><td>150</td></tr>
+            <tr><td>47</td><td>RX 7600 8G</td><td>115</td><td>146</td></tr>
+            <tr><td>48</td><td>RTX 2070 SUPER 8G</td><td>103</td><td>145</td></tr>
+            <tr><td>49</td><td>RX 7600 XT 16G</td><td>109</td><td>144</td></tr>
+            <tr><td>50</td><td>GTX 1080 Ti 11G</td><td>106</td><td>144</td></tr>
+            <tr><td>51</td><td>RX 6750 GRE 10G</td><td>110</td><td>140</td></tr>
+            <tr><td>52</td><td>RX 6700 10G</td><td>101</td><td>140</td></tr>
+            <tr><td>53</td><td>RX 6650 XT 8G</td><td>105</td><td>139</td></tr>
+            <tr><td>54</td><td>RX 6600 XT 8G</td><td>100</td><td>128</td></tr>
+            <tr><td>55</td><td>RTX 3060 12G</td><td>98</td><td>127</td></tr>
+            <tr><td>56</td><td>RTX 2070 8G</td><td>94</td><td>127</td></tr>
+            <tr><td>57</td><td>RTX 2060 SUPER 8G</td><td>92</td><td>121</td></tr>
+            <tr><td>58</td><td>RTX 2060 6G</td><td>85</td><td>109</td></tr>
+            <tr><td>59</td><td>GTX 1080 8G</td><td>75</td><td>103</td></tr>
+            <tr><td>60</td><td>RX 6600 8G</td><td>75</td><td>99</td></tr>
+            <tr><td>61</td><td>RTX 3050 8G</td><td>74</td><td>99</td></tr>
+            <tr><td>62</td><td>GTX 1070 Ti 8G</td><td>72</td><td>94</td></tr>
+            <tr><td>63</td><td>GTX 1660 Ti 6G</td><td>70</td><td>93</td></tr>
+            <tr><td>64</td><td>GTX 1660 SUPER 6G</td><td>63</td><td>89</td></tr>
+            <tr><td>65</td><td>GTX 1070 8G</td><td>67</td><td>88</td></tr>
+            <tr><td>66</td><td>GTX 1660 6G</td><td>66</td><td>85</td></tr>
+            <tr><td>67</td><td>GTX 1650 SUPER 4G</td><td>56</td><td>77</td></tr>
+            <tr><td>68</td><td>RX 6500 XT 4G</td><td>52</td><td>72</td></tr>
+            <tr><td>69</td><td>GTX 1060 5G/6G</td><td>47</td><td>65</td></tr>
+            <tr><td>70</td><td>GTX 1650 4G</td><td>49</td><td>61</td></tr>
+            <tr><td>71</td><td>RX 6400 4G</td><td>38</td><td>50</td></tr>
+            <tr><td>72</td><td>GTX 1630 4G</td><td>29</td><td>38</td></tr>
+            <tr><td>73</td><td>GTX 1050 Ti 4G</td><td>30</td><td>37</td></tr>
+            <tr><td>74</td><td>GTX 1050 2G</td><td>20</td><td>32</td></tr>
+            <tr><td>75</td><td>GT 1030 4G</td><td>15</td><td>20</td></tr>
         </tbody>
     </table>
 
