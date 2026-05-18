@@ -95,6 +95,11 @@
                 class="tab-btn">
             1440p
         </button>
+        <button onclick="switchResolution(2)" 
+                id="btn-2160p"
+                class="tab-btn">
+            2160p
+        </button>
     </div>
 </div>
 <div style="text-align: center; margin: 15px 0 25px; line-height: 1.6; color: #aaa; font-size: 15px;">
@@ -276,16 +281,52 @@
 </tbody>
         </table>
     </div>
+    <div id="tab-2160p" class="resolution-tab">
+        <table>
+          
+        <thead><tr><th>排名</th><th>显卡型号</th><th>1% low帧</th><th>平均帧率</th></tr></thead>
+           
+        <tbody>
+    <tr class="top3"><td>1</td><td>RTX 5090 32G</td><td>110</td><td>186</td></tr>
+    <tr class="top3"><td>2</td><td>RTX 5090D V2 24G</td><td>109</td><td>172</td></tr>
+    <tr class="top3"><td>3</td><td>RTX 4090 24G</td><td>82</td><td>135</td></tr>
+    <tr><td>4</td><td>RTX 5080 16G</td><td>79</td><td>112</td></tr>
+    <tr><td>5</td><td>RTX 5070 Ti 16G</td><td>60</td><td>100</td></tr>
+    <tr><td>6</td><td>RTX 4080 SUPER 16G</td><td>64</td><td>96</td></tr>
+    <tr><td>7</td><td>RTX 4080 16G</td><td>64</td><td>96</td></tr>
+    <tr><td>8</td><td>RX 7900 XTX 24G</td><td>68</td><td>86</td></tr>
+    <tr><td>9</td><td>RTX 3090 Ti 24G</td><td>53</td><td>80</td></tr>
+    <tr><td>10</td><td>RX 9070 16G</td><td>60</td><td>79</td></tr>
+    <tr><td>11</td><td>RX 9070 XT 16G</td><td>56</td><td>79</td></tr>
+    <tr><td>12</td><td>RTX 4070 Ti SUPER 16G</td><td>56</td><td>79</td></tr>
+    <tr><td>13</td><td>RTX 5070 12G</td><td>56</td><td>75</td></tr>
+    <tr><td>14</td><td>RTX 3090 24G</td><td>44</td><td>73</td></tr>
+    <tr><td>15</td><td>RTX 4070 Ti 12G</td><td>52</td><td>72</td></tr>
+    <tr><td>16</td><td>RTX 3080 Ti 12G</td><td>47</td><td>71</td></tr>
+    <tr><td>17</td><td>RTX 4070 SUPER 12G</td><td>46</td><td>68</td></tr>
+    <tr><td>18</td><td>RX 7900 GRE 16G</td><td>49</td><td>62</td></tr>
+    <tr><td>19</td><td>RTX 3080 10G</td><td>42</td><td>62</td></tr>
+    <tr><td>20</td><td>RX 6950 XT 16G</td><td>48</td><td>61</td></tr>
+    <tr><td>21</td><td>RX 9070 GRE 12G</td><td>46</td><td>60</td></tr>
+    <tr><td>22</td><td>RTX 4070 12G</td><td>43</td><td>58</td></tr>
+    <tr><td>23</td><td>RX 6900 XT 16G</td><td>43</td><td>55</td></tr>
+    <tr><td>24</td><td>RTX 3070 Ti 8G</td><td>39</td><td>55</td></tr>
+    <tr><td>25</td><td>RX 7800 XT 16G</td><td>43</td><td>54</td></tr>
+    <tr><td>26</td><td>RTX 5060 Ti 8G</td><td>39</td><td>52</td></tr>
+    <tr><td>27</td><td>RX 6800 XT 16G</td><td>39</td><td>50</td></tr>
+</tbody>
+                    
     <div class="back">
         <a href="index.html">← 返回首页</a>
     </div>
   <script>
 function switchResolution(n) {
     document.getElementById('btn-1080p').classList.toggle('active', n === 0);
-    document.getElementById('btn-1440p').classList.toggle('active', n === 1);
-    
+     document.getElementById('btn-1440p').classList.toggle('active', n === 0);
+     document.getElementById('btn-2160p').classList.toggle('active', n === 0);
     document.getElementById('tab-1080p').style.display = n === 0 ? 'block' : 'none';
     document.getElementById('tab-1440p').style.display = n === 1 ? 'block' : 'none';
+    document.getElementById('tab-2160p').style.display = n === 2 ? 'block' : 'none';
 }
 </script>
 
