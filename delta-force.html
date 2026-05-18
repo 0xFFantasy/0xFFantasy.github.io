@@ -88,7 +88,7 @@
     <div style="display: inline-flex; background: #1a1a1a; border-radius: 50px; padding: 6px; box-shadow: 0 4px 20px rgba(0,0,0,0.6);">
         <button onclick="switchResolution(0)" id="btn-1080p" class="tab-btn active">1080p</button>
         <button onclick="switchResolution(1)" id="btn-1440p" class="tab-btn">1440p</button>
-        <button onclick="switchResolution(2)" id="btn-2160p" class="tab-btn">2160p (4K)</button>
+        <button onclick="switchResolution(2)" id="btn-2160p" class="tab-btn">2160p</button>
     </div>
 </div>
     
@@ -311,12 +311,12 @@
         <a href="index.html">← 返回首页</a>
     </div>
 <script>
-function switchResolution(n) {
+ function switchResolution(n) {
     // 切换按钮高亮
     document.getElementById('btn-1080p').classList.toggle('active', n === 0);
     document.getElementById('btn-1440p').classList.toggle('active', n === 1);
     document.getElementById('btn-2160p').classList.toggle('active', n === 2);
-
+    document.getElementById('return-home').style.display = (n === 2) ? 'block' : 'none';
     // 切换表格显示
     document.getElementById('tab-1080p').classList.toggle('active', n === 0);
     document.getElementById('tab-1440p').classList.toggle('active', n === 1);
