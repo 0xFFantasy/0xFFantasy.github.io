@@ -60,9 +60,14 @@
 <body>
     <h1>🎮 《三角洲行动》75款主流消费级显卡性能榜</h1>
     <p class="subtitle">
-        1080p 分辨率实测 · 数据来源：<a href="https://www.bilibili.com/video/BV1r75Q6XEZC/" target="_blank" style="color:#00b8ff; text-decoration:underline;">@51972</a> B站视频测试（2026年）</br>
+        <div class="tabs">
+        <button class="tab-btn active" onclick="switchResolution(0)">1080p</button>
+        <button class="tab-btn" onclick="switchResolution(1)">1440p</button>
+    </div>
+        1080p/2K/4K 分辨率实测 · 数据来源：<a href="https://www.bilibili.com/video/BV1r75Q6XEZC/" target="_blank" style="color:#00b8ff; text-decoration:underline;">@51972</a> B站视频测试（2026年）</br>
     CPU：9800X3D|G.Skill 16GBx2 6000C40-40-40-77-117
     </p>
+    <div id="tab-1080p" class="resolution-tab active">
     <table>
         <thead>
             <tr>
@@ -150,9 +155,27 @@
             <tr><td>75</td><td>GT 1030 4G</td><td>15</td><td>20</td></tr>
         </tbody>
     </table>
-
+    </div>
+<div id="tab-1440p" class="resolution-tab">
+        <table>
+          
+            <thead><tr><th>排名</th><th>显卡型号</th><th>1% low帧</th><th>平均帧率</th></tr></thead>
+            <tbody>
+                <!-- 1440p 数据粘贴在这里 -->
+            </tbody>
+        </table>
+    </div>
     <div class="back">
         <a href="index.html">← 返回首页</a>
     </div>
+        <script>
+        function switchResolution(n) {
+            document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', i === n);
+            });
+            document.getElementById('tab-1080p').classList.toggle('active', n === 0);
+            document.getElementById('tab-1440p').classList.toggle('active', n === 1);
+        }
+    </script>
 </body>
 </html>
