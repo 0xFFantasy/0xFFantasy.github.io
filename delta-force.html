@@ -5,24 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>三角洲行动 75款显卡专栏 - 0xFFantasy</title>
     <style>
-        .tab-btn {
-            padding: 12px 40px;
-            font-size: 17px;
-            font-weight: bold;
-            background: transparent;
-            color: #aaa;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 0 4px;
-        }
-        .tab-btn.active {
-            background: linear-gradient(90deg, #00ff9d, #00b8ff);
-            color: #000;
-            box-shadow: 0 4px 15px rgba(0, 255, 157, 0.5);
-            transform: scale(1.05);
-        }
+  .tab-btn {
+    padding: 12px 36px;
+    font-size: 17px;
+    font-weight: bold;
+    background: transparent;
+    color: #aaa;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 4px;
+}
+.tab-btn.active {
+    background: linear-gradient(90deg, #00ff9d, #00b8ff);
+    color: #000;
+    box-shadow: 0 4px 15px rgba(0, 255, 157, 0.5);
+    transform: scale(1.05);
+}
         .tab-btn:hover:not(.active) {
             color: #fff;
             background: #333;
@@ -83,25 +83,15 @@
     <h1>🎮 《三角洲行动》75款主流消费级显卡性能榜</h1>
     <p class="subtitle">
        
+
 <div style="text-align: center; margin: 30px 0 25px;">
     <div style="display: inline-flex; background: #1a1a1a; border-radius: 50px; padding: 6px; box-shadow: 0 4px 20px rgba(0,0,0,0.6);">
-        <button onclick="switchResolution(0)" 
-                id="btn-1080p"
-                class="tab-btn active">
-            1080p
-        </button>
-        <button onclick="switchResolution(1)" 
-                id="btn-1440p"
-                class="tab-btn">
-            1440p
-        </button>
-        <button onclick="switchResolution(2)" 
-                id="btn-2160p"
-                class="tab-btn">
-            2160p
-        </button>
+        <button onclick="switchResolution(0)" id="btn-1080p" class="tab-btn active">1080p</button>
+        <button onclick="switchResolution(1)" id="btn-1440p" class="tab-btn">1440p</button>
+        <button onclick="switchResolution(2)" id="btn-2160p" class="tab-btn">2160p (4K)</button>
     </div>
 </div>
+    
 <div style="text-align: center; margin: 15px 0 25px; line-height: 1.6; color: #aaa; font-size: 15px;">
     1080P/2K/4K 分辨率实测 · 数据来源：
     <a href="https://space.bilibili.com/64391344/" target="_blank" style="color:#00b8ff; text-decoration:underline;">@51972</a> 
@@ -281,6 +271,7 @@
 </tbody>
         </table>
     </div>
+    
     <div id="tab-2160p" class="resolution-tab">
         <table>
           
@@ -315,20 +306,22 @@
     <tr><td>26</td><td>RTX 5060 Ti 8G</td><td>39</td><td>52</td></tr>
     <tr><td>27</td><td>RX 6800 XT 16G</td><td>39</td><td>50</td></tr>
 </tbody>
-                    
+       </div>             
     <div class="back">
         <a href="index.html">← 返回首页</a>
     </div>
-  <script>
+<script>
 function switchResolution(n) {
+    // 切换按钮高亮
     document.getElementById('btn-1080p').classList.toggle('active', n === 0);
-     document.getElementById('btn-1440p').classList.toggle('active', n === 0);
-     document.getElementById('btn-2160p').classList.toggle('active', n === 0);
-    document.getElementById('tab-1080p').style.display = n === 0 ? 'block' : 'none';
-    document.getElementById('tab-1440p').style.display = n === 1 ? 'block' : 'none';
-    document.getElementById('tab-2160p').style.display = n === 2 ? 'block' : 'none';
+    document.getElementById('btn-1440p').classList.toggle('active', n === 1);
+    document.getElementById('btn-2160p').classList.toggle('active', n === 2);
+
+    // 切换表格显示
+    document.getElementById('tab-1080p').classList.toggle('active', n === 0);
+    document.getElementById('tab-1440p').classList.toggle('active', n === 1);
+    document.getElementById('tab-2160p').classList.toggle('active', n === 2);
 }
 </script>
-
 </body>
 </html>
