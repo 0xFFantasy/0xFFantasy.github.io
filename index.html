@@ -178,22 +178,31 @@
     </style>
 </head>
 <body>
-    <div style="text-align: center; margin: 50px 0 30px;">
-    <h1 id="freedom-title"
-        style="font-size: 5.2rem; 
+
+<div style="text-align: center; margin: 60px 0 40px; position: relative;">
+    <h1 id="freedom-title" 
+        style="font-size: 5.5rem; 
                font-weight: 900; 
-               letter-spacing: 12px; 
+               letter-spacing: 8px; 
                color: #00ff9d; 
                text-transform: uppercase;
-               text-shadow: 0 0 30px #00ff9d,
-                           0 0 60px #00ff9d;
-               transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+               text-shadow: 0 0 25px #00ff9d;
                cursor: default;
                user-select: none;
-               position: relative;
-               display: inline-block;">
+               image-rendering: pixelated;
+               filter: url(#pixelate);">
         FREEDOM PC
     </h1>
+</div>
+
+<svg width="0" height="0" style="position:absolute">
+    <filter id="pixelate" x="0" y="0" width="100%" height="100%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+        <feImage href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23000'/%3E%3C/svg%3E" 
+                 result="pixel" x="0" y="0" width="100%" height="100%"/>
+        <feComposite in="blur" in2="pixel" operator="in"/>
+    </filter>
+</svg>
 </div>
     <p class="subtitle">自由的选择你的专属CPU/GPU，0xFFantasy持续更新中。</p>
 
@@ -601,20 +610,30 @@
     <p class="btn-text">🚀 开启专属配置</p>
     <p class="btn-subtext">点击进入配置器</p>
 </a>
-    <script>
-// freedom.gov 风格鼠标靠近高亮 + 轻微放大 + 发光增强
+<script>
+// freedom.gov 同款：鼠标快速移动消除马赛克，停下后恢复
 const title = document.getElementById('freedom-title');
+let timeout;
+let lastMove = Date.now();
 
 title.addEventListener('mousemove', () => {
-    title.style.transform = 'scale(1.05)';
-    title.style.textShadow = '0 0 40px #00ff9d, 0 0 80px #00ff9d, 0 0 120px #00b8ff';
-    title.style.letterSpacing = '16px';
-});
-
-title.addEventListener('mouseleave', () => {
-    title.style.transform = 'scale(1)';
-    title.style.textShadow = '0 0 30px #00ff9d, 0 0 60px #00ff9d';
-    title.style.letterSpacing = '12px';
+    const now = Date.now();
+    const speed = now - lastMove;
+    
+    // 快速移动时清除马赛克
+    if (speed < 40) {
+        title.style.filter = 'none';
+        title.style.textShadow = '0 0 40px #00ff9d, 0 0 80px #00ff9d';
+    }
+    
+    lastMove = now;
+    
+    // 鼠标停下后恢复马赛克
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+        title.style.filter = 'url(#pixelate)';
+        title.style.textShadow = '0 0 25px #00ff9d';
+    }, 800); // 停留 0.8 秒后恢复马赛克
 });
 </script>
 </body>
