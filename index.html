@@ -178,7 +178,23 @@
     </style>
 </head>
 <body>
-    <h1>🚀 显卡 / CPU 天梯图 2026</h1>
+    <div style="text-align: center; margin: 50px 0 30px;">
+    <h1 id="freedom-title"
+        style="font-size: 5.2rem; 
+               font-weight: 900; 
+               letter-spacing: 12px; 
+               color: #00ff9d; 
+               text-transform: uppercase;
+               text-shadow: 0 0 30px #00ff9d,
+                           0 0 60px #00ff9d;
+               transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+               cursor: default;
+               user-select: none;
+               position: relative;
+               display: inline-block;">
+        FREEDOM PC
+    </h1>
+</div>
     <p class="subtitle">自由的选择你的专属CPU/GPU，0xFFantasy持续更新中。</p>
 
     <div class="tab-container">
@@ -585,5 +601,21 @@
     <p class="btn-text">🚀 开启专属配置</p>
     <p class="btn-subtext">点击进入配置器</p>
 </a>
+    <script>
+// freedom.gov 风格鼠标靠近高亮 + 轻微放大 + 发光增强
+const title = document.getElementById('freedom-title');
+
+title.addEventListener('mousemove', () => {
+    title.style.transform = 'scale(1.05)';
+    title.style.textShadow = '0 0 40px #00ff9d, 0 0 80px #00ff9d, 0 0 120px #00b8ff';
+    title.style.letterSpacing = '16px';
+});
+
+title.addEventListener('mouseleave', () => {
+    title.style.transform = 'scale(1)';
+    title.style.textShadow = '0 0 30px #00ff9d, 0 0 60px #00ff9d';
+    title.style.letterSpacing = '12px';
+});
+</script>
 </body>
 </html>
