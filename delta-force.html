@@ -356,37 +356,31 @@
         </div>
     
     
-  <script>
- function switchResolution(n) {
-    // 切换按钮高亮
-    document.getElementById('btn-1080p').classList.toggle('active', n === 0);
-    document.getElementById('btn-1440p').classList.toggle('active', n === 1);
-    document.getElementById('btn-2160p').classList.toggle('active', n === 2);
-    
-    // 切换表格显示
-    document.getElementById('tab-1080p').classList.toggle('active', n === 0);
-    document.getElementById('tab-1440p').classList.toggle('active', n === 1);
-    document.getElementById('tab-2160p').classList.toggle('active', n === 2);
-}
-      function switchTab(tab) {
-            // 切换内容
-      const gpuSection = document.getElementById('gpu-section');
+<script>
+function switchTab(tab) {
+    const gpuSection = document.getElementById('gpu-section');
     const cpuSection = document.getElementById('cpu-section');
-    
-    gpuSection.style.display = (tab === 0) ? 'block' : 'none';
-    cpuSection.style.display = (tab === 1) ? 'block' : 'none';
-
-    // 切换按钮高亮
     const tabGpu = document.getElementById('tab-gpu');
     const tabCpu = document.getElementById('tab-cpu');
-          }
-            // 切换按钮样式
-            document.getElementById('tab-gpu').classList.toggle('tab-active', tab === 0);
-            document.getElementById('tab-gpu').classList.toggle('tab-inactive', tab !== 0);
-            document.getElementById('tab-cpu').classList.toggle('tab-active', tab === 1);
-            document.getElementById('tab-cpu').classList.toggle('tab-inactive', tab !== 1);
-        }
-    </script>
-  </script>
+
+    if (tab === 0) {
+        gpuSection.style.display = 'block';
+        cpuSection.style.display = 'none';
+        tabGpu.classList.add('active');
+        tabCpu.classList.remove('active');
+    } else {
+        gpuSection.style.display = 'none';
+        cpuSection.style.display = 'block';
+        tabGpu.classList.remove('active');
+        tabCpu.classList.add('active');
+    }
+}
+
+// 页面加载时默认显示显卡专栏
+window.onload = function() {
+    document.getElementById('gpu-section').style.display = 'block';
+    document.getElementById('cpu-section').style.display = 'none';
+};
+</script>
 </body>
 </html>
