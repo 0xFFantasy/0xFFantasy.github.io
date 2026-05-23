@@ -359,23 +359,12 @@
     
 <script>
 function switchTab(tab) {
-    const gpuSection = document.getElementById('gpu-section');
-    const cpuSection = document.getElementById('cpu-section');
-    const tabGpu = document.getElementById('tab-gpu');
-    const tabCpu = document.getElementById('tab-cpu');
-
-    if (tab === 0) {
-        gpuSection.style.display = 'block';
-        cpuSection.style.display = 'none';
-        tabGpu.classList.add('active');
-        tabCpu.classList.remove('active');
-    } else {
-        gpuSection.style.display = 'none';
-        cpuSection.style.display = 'block';
-        tabGpu.classList.remove('active');
-        tabCpu.classList.add('active');
-    }
-}
+            document.getElementById('gpu-section').classList.toggle('section-active', tab === 0);
+            document.getElementById('cpu-section').classList.toggle('section-active', tab === 1);
+            
+            document.getElementById('tab-gpu').classList.toggle('tab-active', tab === 0);
+            document.getElementById('tab-cpu').classList.toggle('tab-active', tab === 1);
+        }
 
 
 function switchResolution(n) {
