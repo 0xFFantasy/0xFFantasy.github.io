@@ -367,25 +367,26 @@
         <p style="text-align:center; color:#aaa;">2160p 分辨率内容开发中...</p>
     </div>
 </div>
+    
 <script>
 function switchTab(tab) {
-            document.getElementById('gpu-section').classList.toggle('section-active', tab === 0);
-            document.getElementById('cpu-section').classList.toggle('section-active', tab === 1);
-            
-            document.getElementById('tab-gpu').classList.toggle('tab-active', tab === 0);
-            document.getElementById('tab-cpu').classList.toggle('tab-active', tab === 1);
-        }
-
-
-function switchResolution(n) {
-    document.getElementById('btn-1080p').classList.toggle('active', n === 0);
-    document.getElementById('btn-1440p').classList.toggle('active', n === 1);
-    document.getElementById('btn-2160p').classList.toggle('active', n === 2);
-
-    document.getElementById('tab-1080p').classList.toggle('active', n === 0);
-    document.getElementById('tab-1440p').classList.toggle('active', n === 1);
-    document.getElementById('tab-2160p').classList.toggle('active', n === 2);
+    document.getElementById('gpu-section').classList.toggle('section-active', tab === 0);
+    document.getElementById('cpu-section').classList.toggle('section-active', tab === 1);
+    
+    document.getElementById('tab-gpu').classList.toggle('tab-active', tab === 0);
+    document.getElementById('tab-cpu').classList.toggle('tab-active', tab === 1);
 }
+
+function switchResolution(res) {
+    document.querySelectorAll('.resolution-content').forEach(el => el.style.display = 'none');
+    const target = document.getElementById('res-' + res);
+    if (target) target.style.display = 'block';
+    
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    const btn = document.getElementById('btn-' + (res === 0 ? '1080p' : res === 1 ? '1440p' : '2160p'));
+    if (btn) btn.classList.add('active');
+}
+
 </script>
 
 
