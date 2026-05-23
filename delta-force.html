@@ -370,23 +370,51 @@
     
 <script>
 function switchTab(tab) {
-    document.getElementById('gpu-section').classList.toggle('section-active', tab === 0);
-    document.getElementById('cpu-section').classList.toggle('section-active', tab === 1);
+    const gpuSection = document.getElementById('gpu-section');
+    const cpuSection = document.getElementById('cpu-section');
+    
+    gpuSection.classList.toggle('section-active', tab === 0);
+    cpuSection.classList.toggle('section-active', tab === 1);
     
     document.getElementById('tab-gpu').classList.toggle('tab-active', tab === 0);
     document.getElementById('tab-cpu').classList.toggle('tab-active', tab === 1);
+    
+    // 重置分辨率按钮状态
+    resetResolutionButtons();
+}
+
+function resetResolutionButtons() {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
 }
 
 function switchResolution(res) {
-    document.querySelectorAll('.resolution-content').forEach(el => el.style.display = 'none');
-    const target = document.getElementById('res-' + res);
-    if (target) target.style.display = 'block';
+    const isGPU = document.getElementById('gpu-section').classList.contains('section-active');
     
+    if (isGPU) {
+        // GPU 专栏处理
+        document.querySelectorAll('.resolution-tab').forEach(el => el.classList.remove('active'));
+        const target = document.getElementById('tab-' + (res === 0 ? '1080p' : res === 1 ? '1440p' : '2160p'));
+        if (target) target.classList.add('active');
+    } else {
+        // CPU 专栏处理
+        document.querySelectorAll('.resolution-content').forEach(el => el.style.display = 'none');
+        const target = document.getElementById('res-' + res);
+        if (target) target.style.display = 'block';
+    }
+    
+    // 更新按钮高亮
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    const btn = document.getElementById('btn-' + (res === 0 ? '1080p' : res === 1 ? '1440p' : '2160p'));
-    if (btn) btn.classList.add('active');
+    const btnId = res === 0 ? 'btn-1080p' : res === 1 ? 'btn-1440p' : 'btn-2160p';
+    const activeBtn = document.getElementById(btnId);
+    if (activeBtn) activeBtn.classList.add('active');
 }
 
+// 初始化（页面加载后默认选中1080p）
+window.onload = function() {
+    // 确保 GPU 默认显示 1080p
+    const defaultGPU = document.getElementById('tab-1080p');
+    if (defaultGPU) defaultGPU.classList.add('active');
+};
 </script>
 
 
