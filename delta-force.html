@@ -381,6 +381,36 @@ window.onload = function() {
     document.getElementById('gpu-section').style.display = 'block';
     document.getElementById('cpu-section').style.display = 'none';
 };
+
+// 分辨率切换函数
+function switchResolution(n) {
+    // 隐藏所有分辨率内容
+    document.querySelectorAll('.resolution-content').forEach(function(el) {
+        el.style.display = 'none';
+    });
+    
+    // 显示选中的内容
+    const target = document.getElementById('res-' + res);
+    if (target) {
+        target.style.display = 'block';
+    }
+    
+    // 切换按钮高亮
+    document.querySelectorAll('.tab-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+    });
+    
+    const activeBtn = document.getElementById('btn-' + (res === 0 ? '1080p' : res === 1 ? '1440p' : '2160p'));
+    if (activeBtn) {
+        activeBtn.classList.add('active');
+    }
+}
+
+// 页面加载完成后默认显示1080p
+window.onload = function() {
+    switchResolution(0);
+};
 </script>
+    
 </body>
 </html>
