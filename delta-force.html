@@ -327,8 +327,11 @@
 </tbody>
        </div>    
     </div>
+
+
+    
     <div id="cpu-section" class="section">
-              <h1>🎮 《三角洲行动》主流消费级CPU性能榜</h1>
+              <h2>🎮 《三角洲行动》主流消费级CPU性能榜</h2>
         
                 <p class="subtitle">
        
@@ -367,9 +370,16 @@
 }
       function switchTab(tab) {
             // 切换内容
-            document.getElementById('gpu-section').classList.toggle('section-active', tab === 0);
-            document.getElementById('cpu-section').classList.toggle('section-active', tab === 1);
-            
+      const gpuSection = document.getElementById('gpu-section');
+    const cpuSection = document.getElementById('cpu-section');
+    
+    gpuSection.style.display = (tab === 0) ? 'block' : 'none';
+    cpuSection.style.display = (tab === 1) ? 'block' : 'none';
+
+    // 切换按钮高亮
+    const tabGpu = document.getElementById('tab-gpu');
+    const tabCpu = document.getElementById('tab-cpu');
+          }
             // 切换按钮样式
             document.getElementById('tab-gpu').classList.toggle('tab-active', tab === 0);
             document.getElementById('tab-gpu').classList.toggle('tab-inactive', tab !== 0);
