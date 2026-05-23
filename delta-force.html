@@ -379,7 +379,6 @@ function switchTab(tab) {
     document.getElementById('tab-gpu').classList.toggle('tab-active', tab === 0);
     document.getElementById('tab-cpu').classList.toggle('tab-active', tab === 1);
     
-    // 重置分辨率按钮状态
     resetResolutionButtons();
 }
 
@@ -391,32 +390,43 @@ function switchResolution(res) {
     const isGPU = document.getElementById('gpu-section').classList.contains('section-active');
     
     if (isGPU) {
-        // GPU 专栏处理
+        // GPU 切换
         document.querySelectorAll('.resolution-tab').forEach(el => el.classList.remove('active'));
-        const target = document.getElementById('tab-' + (res === 0 ? '1080p' : res === 1 ? '1440p' : '2160p'));
+        const targetId = 'tab-' + (res === 0 ? '1080p' : res === 1 ? '1440p' : '2160p');
+        const target = document.getElementById(targetId);
         if (target) target.classList.add('active');
+        
+        // 高亮 GPU 按钮
+        highlightButton('gpu', res);
     } else {
-        // CPU 专栏处理
+        // CPU 切换
         document.querySelectorAll('.resolution-content').forEach(el => el.style.display = 'none');
         const target = document.getElementById('res-' + res);
         if (target) target.style.display = 'block';
+        
+        // 高亮 CPU 按钮
+        highlightButton('cpu', res);
     }
-    
-    // 更新按钮高亮
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    const btnId = res === 0 ? 'btn-1080p' : res === 1 ? 'btn-1440p' : 'btn-2160p';
-    const activeBtn = document.getElementById(btnId);
-    if (activeBtn) activeBtn.classList.add('active');
 }
 
-// 初始化（页面加载后默认选中1080p）
+function highlightButton(type, res) {
+    resetResolutionButtons();
+    const prefix = type === 'gpu' ? 'gpu-btn-' : 'cpu-btn-';
+    const btnId = prefix + (res === 0 ? '1080p' : res === 1 ? '1440p' : '2160p');
+    const btn = document.getElementById(btnId);
+    if (btn) btn.classList.add('active');
+}
+
+// 初始化
 window.onload = function() {
-    // 确保 GPU 默认显示 1080p
     const defaultGPU = document.getElementById('tab-1080p');
     if (defaultGPU) defaultGPU.classList.add('active');
+    
+    // 默认高亮 GPU 的 1080p 按钮
+    const defaultBtn = document.getElementById('gpu-btn-1080p');
+    if (defaultBtn) defaultBtn.classList.add('active');
 };
 </script>
-
 
     
 </body>
