@@ -329,12 +329,12 @@
     </div>
 
 
-<!-- CPU专栏 -->
+<!-- ==================== CPU专栏 ==================== -->
 <div id="cpu-section" class="section">
     <h2 style="text-align:center; color:#00ff9d; margin:40px 0 20px;">
         🖥️ 《三角洲行动》主流消费级CPU性能榜
     </h2>
-    
+
     <p class="subtitle" style="text-align:center; color:#aaa; margin-bottom:20px;">
         1080P 三次取平均值 分辨率实测 · 数据来源：
     </p>
@@ -348,8 +348,9 @@
         </div>
     </div>
 
-    <!-- 1080p 内容 -->
-    <div id="res-0" class="resolution-content" style="display:block;">
+    <!-- 这里放你的1080p、1440p、2160p具体内容 -->
+    <div id="res-0" class="resolution-content" style="display: block;">
+        <!-- 你的1080p内容写在这里 -->
         <div style="text-align: center; margin: 15px 0 25px; line-height: 1.6; color: #aaa; font-size: 15px;">
             B站视频测试 (2026年)<br>
             显卡: RTX 5090DV2 | 
@@ -358,15 +359,14 @@
         </div>
     </div>
 
-    <!-- 1440p 和 2160p 内容（目前可为空，后面再补充） -->
-    <div id="res-1" class="resolution-content" style="display:none;">
-        <p style="text-align:center; color:#aaa;">1440p 内容开发中...</p>
+    <div id="res-1" class="resolution-content" style="display: none;">
+        <p style="text-align:center; color:#aaa;">1440p 分辨率内容开发中...</p>
     </div>
-    <div id="res-2" class="resolution-content" style="display:none;">
-        <p style="text-align:center; color:#aaa;">2160p 内容开发中...</p>
+
+    <div id="res-2" class="resolution-content" style="display: none;">
+        <p style="text-align:center; color:#aaa;">2160p 分辨率内容开发中...</p>
     </div>
 </div>
-    
 <script>
 function switchTab(tab) {
             document.getElementById('gpu-section').classList.toggle('section-active', tab === 0);
