@@ -3,8 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>三角洲行动 75款显卡专栏 - 0xFFantasy</title>
+    <title>三角洲行动 专属数据 - Freedom DIY</title>
     <style>
+        body { font-family: 'Microsoft YaHei', sans-serif; background: #0f0f1a; color: #eee; margin: 0; padding: 20px; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        h1 { text-align: center; color: #00ff9d; }
+        .tabs { text-align: center; margin: 30px 0 40px; }
+        .tab-btn {
+            display: inline-block;
+            padding: 14px 36px;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .tab-active { background: #00ff9d; color: #000; }
+        .tab-inactive { background: #333; color: #fff; }
+        .section { display: none; }
+        .section-active { display: block; }
   .tab-btn {
     padding: 12px 36px;
     font-size: 17px;
@@ -82,6 +100,12 @@
     </style>
 </head>
 <body>
+    <div class="tabs">
+            <a href="#" onclick="switchTab(0)" id="tab-gpu" class="tab-btn tab-active">🎮 显卡专栏</a>
+            <a href="#" onclick="switchTab(1)" id="tab-cpu" class="tab-btn tab-inactive">🖥️ CPU专栏</a>
+        </div>
+<div id="gpu-section" class="section section-active">
+    
     <h1>🎮 《三角洲行动》75款主流消费级显卡性能榜</h1>
     <p class="subtitle">
        
@@ -322,6 +346,22 @@
     <tr><td>27</td><td>RX 6800 XT 16G</td><td>39</td><td>50</td></tr>
 </tbody>
        </div>    
+    <div id="cpu-section" class="section">
+            <h2 style="text-align:center; color:#00ff9d;">三角洲行动 CPU推荐（2026最新）</h2>
+            <div style="background:rgba(255,255,255,0.05); padding:25px; border-radius:12px; margin:20px 0;">
+                <h3>🏆 最推荐 CPU</h3>
+                <p><strong>AMD Ryzen 7 7800X3D / 9800X3D</strong> —— 三角洲行动首选CPU</p>
+                <p><strong>理由：</strong>游戏对CPU缓存和单核性能要求极高，X3D系列表现碾压</p>
+                
+                <h3>其他推荐</h3>
+                <ul>
+                    <li>顶级选择：Ryzen 9 9950X3D</li>
+                    <li>高性价比：Ryzen 7 9700X</li>
+                    <li>Intel 备选：Core i7-14700K / Ultra 9 285K</li>
+                </ul>
+            </div>
+        </div>
+    </div>
     
   <script>
  function switchResolution(n) {
@@ -335,6 +375,18 @@
     document.getElementById('tab-1440p').classList.toggle('active', n === 1);
     document.getElementById('tab-2160p').classList.toggle('active', n === 2);
 }
+      function switchTab(tab) {
+            // 切换内容
+            document.getElementById('gpu-section').classList.toggle('section-active', tab === 0);
+            document.getElementById('cpu-section').classList.toggle('section-active', tab === 1);
+            
+            // 切换按钮样式
+            document.getElementById('tab-gpu').classList.toggle('tab-active', tab === 0);
+            document.getElementById('tab-gpu').classList.toggle('tab-inactive', tab !== 0);
+            document.getElementById('tab-cpu').classList.toggle('tab-active', tab === 1);
+            document.getElementById('tab-cpu').classList.toggle('tab-inactive', tab !== 1);
+        }
+    </script>
   </script>
 </body>
 </html>
