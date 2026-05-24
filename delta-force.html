@@ -356,15 +356,12 @@
 
 <!-- ==================== CPU专栏 ==================== -->
 <div id="cpu-section" class="section">
-    <h2 style="text-align:center; color:#00ff9d; margin:40px 0 20px;">
-        🖥️ 《三角洲行动》主流消费级CPU性能榜
-    </h2>
-
-    <p class="subtitle" style="text-align:center; color:#aaa; margin-bottom:20px;">
-        1080P 三次取平均值 分辨率实测 · 数据来源：B站视频测试 (2026年)
-    </p>
-
-    <!-- 分辨率切换按钮 -->
+    <h2 style="text-align:center; color:#00ff9d; margin:40px 0 20px;">🖥️ 《三角洲行动》主流消费级CPU性能榜</h2>
+   <p class="subtitle" style="text-align:center; color:#aaa; margin-bottom:20px;">
+    1080P 三次取平均值 · 数据来源：
+    <a href="https://www.bilibili.com/video/BV1psL86aEzd/" target="_blank" style="color:#00d0ff; text-decoration:underline;">@评测臻选</a> (2026年)
+</p>
+    <!-- CPU 分辨率按钮 -->
     <div style="text-align: center; margin: 30px 0 25px;">
         <div style="display: inline-flex; background: #1a1a1a; border-radius: 50px; padding: 6px; box-shadow: 0 4px 20px rgba(0,0,0,0.6);">
             <button onclick="switchResolution(0)" id="cpu-btn-1080p" class="tab-btn active">1080p</button>
@@ -373,64 +370,28 @@
         </div>
     </div>
 
-    <!-- 1080p 内容 -->
+    <!-- 1080p CPU表格 -->
     <div id="res-0" class="resolution-content" style="display: block;">
         <table>
             <thead>
-                <tr>
-                    <th>排名</th>
-                    <th>CPU型号</th>
-                    <th>平均帧数 (FPS)</th>
-                    <th>备注</th>
-                </tr>
+                <tr><th>排名</th><th>CPU型号</th><th>平均帧数 (FPS)</th><th>备注</th></tr>
             </thead>
             <tbody>
                 <tr class="top3"><td>1</td><td>AMD Ryzen 9 9950X3D</td><td>285</td><td>最强游戏CPU</td></tr>
                 <tr class="top3"><td>2</td><td>Intel Core i9-14900K</td><td>272</td><td></td></tr>
                 <tr class="top3"><td>3</td><td>AMD Ryzen 7 9800X3D</td><td>265</td><td>性价比之王</td></tr>
-                <!-- 在这里继续添加更多CPU行 -->
                 <tr><td>4</td><td>AMD Ryzen 9 7950X3D</td><td>248</td><td></td></tr>
                 <tr><td>5</td><td>Intel Core i7-14700K</td><td>235</td><td></td></tr>
             </tbody>
         </table>
     </div>
 
-    <!-- 1440p 内容 -->
+    <!-- 1440p 和 2160p 占位 -->
     <div id="res-1" class="resolution-content" style="display: none;">
-        <table>
-            <thead>
-                <tr>
-                    <th>排名</th>
-                    <th>CPU型号</th>
-                    <th>平均帧数 (FPS)</th>
-                    <th>备注</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td colspan="4" style="text-align:center; color:#aaa; padding:60px 20px;">
-                    1440p 分辨率CPU性能榜正在整理中...<br>数据更新后会立刻补上
-                </td></tr>
-            </tbody>
-        </table>
+        <table><tbody><tr><td colspan="4" style="text-align:center; padding:80px 20px; color:#888;">1440p CPU性能榜正在整理中...</td></tr></tbody></table>
     </div>
-
-    <!-- 2160p 内容 -->
     <div id="res-2" class="resolution-content" style="display: none;">
-        <table>
-            <thead>
-                <tr>
-                    <th>排名</th>
-                    <th>CPU型号</th>
-                    <th>平均帧数 (FPS)</th>
-                    <th>备注</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td colspan="4" style="text-align:center; color:#aaa; padding:60px 20px;">
-                    2160p (4K) 分辨率CPU性能榜正在整理中...<br>数据更新后会立刻补上
-                </td></tr>
-            </tbody>
-        </table>
+        <table><tbody><tr><td colspan="4" style="text-align:center; padding:80px 20px; color:#888;">2160p (4K) CPU性能榜正在整理中...</td></tr></tbody></table>
     </div>
 </div>
 
