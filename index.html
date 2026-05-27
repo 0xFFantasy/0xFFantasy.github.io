@@ -785,5 +785,57 @@ freedom.addEventListener('mousemove', () => {
     }, 1000);   // 停留1秒后恢复马赛克
 });
 </script>
+    <!-- ==================== 左侧悬浮电源计算器（调用 power-calculator.html） ==================== -->
+<!-- 悬浮按钮 -->
+<button onclick="togglePowerPanel()" 
+        style="position: fixed; left: 25px; top: 50%; transform: translateY(-50%); 
+               width: 70px; height: 70px; background: linear-gradient(135deg, #00ff9d, #00cc7a); 
+               color: #000; border: none; border-radius: 50%; font-size: 32px; 
+               box-shadow: 0 10px 30px rgba(0, 255, 157, 0.5); 
+               z-index: 9999; cursor: pointer; display: flex; 
+               align-items: center; justify-content: center; transition: all 0.3s;">
+    ⚡
+</button>
+
+<!-- 左侧滑出面板 -->
+<div id="powerPanel" style="position: fixed; left: -520px; top: 0; width: 480px; height: 100vh; 
+                           background: #1a1a1a; border-right: 4px solid #00ff9d; 
+                           box-shadow: 15px 0 40px rgba(0,0,0,0.7); z-index: 10000; 
+                           transition: left 0.45s cubic-bezier(0.32, 0.72, 0, 1); overflow: hidden;">
+
+    <div style="padding: 20px; height: 100%; display: flex; flex-direction: column;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <h2 style="color:#00ff9d; margin:0;">⚡ 整机功耗计算器</h2>
+            <button onclick="togglePowerPanel()" style="background:none; border:none; font-size:32px; color:#888; cursor:pointer; padding:0 10px;">✕</button>
+        </div>
+
+        <!-- 调用独立的 power-calculator.html -->
+        <iframe id="powerFrame" 
+                src="power-calculator.html" 
+                style="flex: 1; border: none; border-radius: 12px; background: #111; width:100%;"
+                allowfullscreen></iframe>
+    </div>
+</div>
+
+<script>
+// 打开/关闭左侧面板
+function togglePowerPanel() {
+    const panel = document.getElementById('powerPanel');
+    if (panel.style.left === '0px') {
+        panel.style.left = '-520px';
+    } else {
+        panel.style.left = '0px';
+    }
+}
+
+// 点击外部区域关闭
+document.addEventListener('click', function(e) {
+    const panel = document.getElementById('powerPanel');
+    const btn = document.querySelector('button[onclick="togglePowerPanel()"]');
+    if (panel.style.left === '0px' && !panel.contains(e.target) && e.target !== btn) {
+        panel.style.left = '-520px';
+    }
+});
+</script>
 </body>
 </html>
