@@ -35,6 +35,22 @@
             gap: 15px;
             margin-top: 10px;
         }
+        
+
+.eff-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.eff-btn.active {
+  background: #00ff9d;
+  color: #000;
+  font-weight: bold;
+}
     </style>
 </head>
 <body>
@@ -62,21 +78,28 @@
             <input type="number" id="hdds" value="0" min="0">
         </div>
         <div>
-            <label style="margin-bottom:8px;">一体式水冷</label>
-            <button onclick="toggleWaterCooling(this)" id="waterCoolingBtn" 
-                    style="width:100%; padding:14px; background:#222; border:none; color:#ddd; border-radius:10px;">
-                ❌ 未使用
-            </button>
-        </div>
+       <label style="margin-bottom:8px;">水冷散热器</label>
+       <select id="waterCooling" onchange="calculatePower()" style="width:100%; padding:14px; background:#222; border:none; color:#ddd; border-radius:10px;">
+       <option value="0">未使用</option>
+       <option value="15">120水冷 (约15W)</option>
+       <option value="30">240水冷 (约30W)</option>
+       <option value="45" selected>360水冷 (约45W)</option>
+          </select>
+      </div>
     </div>
 
     <label style="margin-top:25px;">安全系数（推荐）</label>
     <div style="margin:12px 0 30px;">
         <button onclick="setMultiplier(1.25)" id="btn125" class="multi-btn">1.25倍（够用）</button>
         <button onclick="setMultiplier(1.5)" id="btn15" class="multi-btn">1.5倍（推荐）</button>
-        <button onclick="setMultiplier(1.75)" id="btn175" class="multi-btn active">1.75倍（保守）</button>
+        <button onclick="setMultiplier(1.75)" id="btn175" class="multi-btn active">1.75倍（未来升级）</button>
     </div>
-
+      <label style="margin-top:25px;">电源认证等级</label>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <button type="button" onclick="setEfficiency('basic')" class="eff-btn" id="basic">白牌/铜牌</button>
+      <button type="button" onclick="setEfficiency('bronze')" class="eff-btn" id="bronze">金牌</button>
+      <button type="button" onclick="setEfficiency('platinum')" class="eff-btn" id="platinum">白金牌/钛金</button>
+     </div>
     <div class="result">
         <p style="color:#888;">预计峰值总功耗</p>
         <h1 id="totalPower">920W</h1>
@@ -88,54 +111,53 @@
     </button>
 
     <script>
-        let multiplier = 1.75;
-        let isWaterCooling = false;
+// 定义默认的效率系数，用于计算推荐瓦数
+let efficiencyFactor = 1.2; // 默认白牌/铜牌需要更多余量
 
-        function setMultiplier(m) {
-            multiplier = m;
-            document.querySelectorAll('.multi-btn').forEach(btn => btn.classList.remove('active'));
-            if (m === 1.25) document.getElementById('btn125').classList.add('active');
-            else if (m === 1.5) document.getElementById('btn15').classList.add('active');
-            else document.getElementById('btn175').classList.add('active');
-            calculatePower();
-        }
+function setEfficiency(type) {
+  // 移除所有按钮的 active 状态
+  document.querySelectorAll('.eff-btn').forEach(btn => btn.classList.remove('active'));
+  
+  if (type === 'basic') {
+    efficiencyFactor = 1.2; // 白牌/铜牌，建议留20%余量
+    document.getElementById('basic').classList.add('active');
+  } else if (type === 'bronze') {
+    efficiencyFactor = 1.1; // 金牌，留10%余量
+    document.getElementById('bronze').classList.add('active');
+  } else {
+    efficiencyFactor = 1.05; // 白金牌/钛金，留5%余量
+    document.getElementById('platinum').classList.add('active');
+  }
+  calculatePower();
+}
 
-        function toggleWaterCooling(btn) {
-            isWaterCooling = !isWaterCooling;
-            if (isWaterCooling) {
-                btn.textContent = "✅ 已使用 (约45W)";
-                btn.style.background = "#00ff9d";
-                btn.style.color = "#000";
-            } else {
-                btn.textContent = "❌ 未使用";
-                btn.style.background = "#222";
-                btn.style.color = "#ddd";
-            }
-            calculatePower();
-        }
-
-        function calculatePower() {
-            const cpu = parseFloat(document.getElementById('cpuPower').value) || 0;
-            const gpu = parseFloat(document.getElementById('gpuPower').value) || 0;
-            
-            const fans = parseFloat(document.getElementById('fans').value) || 0;
-            const ssds = parseFloat(document.getElementById('ssds').value) || 0;
-            const hdds = parseFloat(document.getElementById('hdds').value) || 0;
-            
-            const other = (fans * 5) + (ssds * 6) + (hdds * 10) + (isWaterCooling ? 45 : 0);
-
-            const base = cpu + gpu + other;
-            const total = Math.round(base * multiplier);
-            
-            let recommend = Math.ceil(total / 100) * 100;
-            if (recommend < total + 150) recommend += 150;
-
-            document.getElementById('totalPower').textContent = total + 'W';
-            document.getElementById('recommendPSU').textContent = recommend + 'W';
-        }
-
-        // 页面加载后自动计算
-        window.onload = calculatePower;
-    </script>
+function calculatePower() {
+  const cpu = parseFloat(document.getElementById('cpuPower').value) || 0;
+  const gpu = parseFloat(document.getElementById('gpuPower').value) || 0;
+  
+  const fans = parseFloat(document.getElementById('fans').value) || 0;
+  const ssds = parseFloat(document.getElementById('ssds').value) || 0;
+  const hdds = parseFloat(document.getElementById('hdds').value) || 0;
+  
+  // 获取水冷功耗
+  const waterCoolingWatt = parseFloat(document.getElementById('waterCooling').value) || 0;
+  
+  // 计算其他配件总功耗
+  const other = (fans * 5) + (ssds * 6) + (hdds * 10) + waterCoolingWatt;
+  const base = cpu + gpu + other;
+  
+  // 应用安全系数 (原来的 1.25/1.5/1.75)
+  const totalWithBuffer = Math.round(base * multiplier);
+  
+  // 计算推荐电源瓦数 (考虑电源转化率损耗)
+  // 这里简化逻辑：推荐瓦数 = (整机功耗 * 安全系数) * 效率系数
+  // 例如：整机500W * 1.5安全系数 = 750W峰值，如果是铜牌(1.2)则推荐 750 * 1.2 = 900W
+  const recommendedWattage = Math.ceil(totalWithBuffer * efficiencyFactor);
+  
+  // 更新显示
+  document.getElementById('totalPower').textContent = totalWithBuffer + "W";
+  document.getElementById('recommendPSU').textContent = recommendedWattage + "W";
+}
+</script>
 </body>
 </html>
