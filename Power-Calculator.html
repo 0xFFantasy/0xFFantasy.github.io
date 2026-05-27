@@ -111,53 +111,74 @@
     </button>
 
     <script>
-// 定义默认的效率系数，用于计算推荐瓦数
-let efficiencyFactor = 1.2; // 默认白牌/铜牌需要更多余量
+    // 1. 定义全局变量：安全系数 multiplier 和 效率系数 efficiencyFactor
+    let multiplier = 1.75; // 默认安全系数（对应“未来升级”）
+    let efficiencyFactor = 1.2; // 默认效率系数（对应“白牌/铜牌”）
 
-function setEfficiency(type) {
-  // 移除所有按钮的 active 状态
-  document.querySelectorAll('.eff-btn').forEach(btn => btn.classList.remove('active'));
-  
-  if (type === 'basic') {
-    efficiencyFactor = 1.2; // 白牌/铜牌，建议留20%余量
-    document.getElementById('basic').classList.add('active');
-  } else if (type === 'bronze') {
-    efficiencyFactor = 1.1; // 金牌，留10%余量
-    document.getElementById('bronze').classList.add('active');
-  } else {
-    efficiencyFactor = 1.05; // 白金牌/钛金，留5%余量
-    document.getElementById('platinum').classList.add('active');
-  }
-  calculatePower();
-}
+    // 2. 定义 setMultiplier 函数（用于处理安全系数按钮的点击）
+    function setMultiplier(value) {
+        multiplier = value;
+        // 更新按钮的 active 样式
+        document.querySelectorAll('.multi-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        calculatePower(); // 点击后立即计算
+    }
 
-function calculatePower() {
-  const cpu = parseFloat(document.getElementById('cpuPower').value) || 0;
-  const gpu = parseFloat(document.getElementById('gpuPower').value) || 0;
-  
-  const fans = parseFloat(document.getElementById('fans').value) || 0;
-  const ssds = parseFloat(document.getElementById('ssds').value) || 0;
-  const hdds = parseFloat(document.getElementById('hdds').value) || 0;
-  
-  // 获取水冷功耗
-  const waterCoolingWatt = parseFloat(document.getElementById('waterCooling').value) || 0;
-  
-  // 计算其他配件总功耗
-  const other = (fans * 5) + (ssds * 6) + (hdds * 10) + waterCoolingWatt;
-  const base = cpu + gpu + other;
-  
-  // 应用安全系数 (原来的 1.25/1.5/1.75)
-  const totalWithBuffer = Math.round(base * multiplier);
-  
-  // 计算推荐电源瓦数 (考虑电源转化率损耗)
-  // 这里简化逻辑：推荐瓦数 = (整机功耗 * 安全系数) * 效率系数
-  // 例如：整机500W * 1.5安全系数 = 750W峰值，如果是铜牌(1.2)则推荐 750 * 1.2 = 900W
-  const recommendedWattage = Math.ceil(totalWithBuffer * efficiencyFactor);
-  
-  // 更新显示
-  document.getElementById('totalPower').textContent = totalWithBuffer + "W";
-  document.getElementById('recommendPSU').textContent = recommendedWattage + "W";
-}
+    // 3. 修改 setEfficiency 函数（移除内部的 calculatePower() 调用，或者保留也可以，这里为了逻辑清晰保留）
+    function setEfficiency(type) {
+        // 移除所有按钮的 active 状态
+        document.querySelectorAll('.eff-btn').forEach(btn => btn.classList.remove('active'));
+        
+        if (type === 'basic') {
+            efficiencyFactor = 1.2; // 白牌/铜牌
+            document.getElementById('basic').classList.add('active');
+        } else if (type === 'bronze') {
+            efficiencyFactor = 1.1; // 金牌
+            document.getElementById('bronze').classList.add('active');
+        } else {
+            efficiencyFactor = 1.05; // 白金牌/钛金
+            document.getElementById('platinum').classList.add('active');
+        }
+        calculatePower(); // 点击后立即计算
+    }
+
+    // 4. 修正 calculatePower 函数
+    function calculatePower() {
+        const cpu = parseFloat(document.getElementById('cpuPower').value) || 0;
+        const gpu = parseFloat(document.getElementById('gpuPower').value) || 0;
+        const fans = parseFloat(document.getElementById('fans').value) || 0;
+        const ssds = parseFloat(document.getElementById('ssds').value) || 0;
+        const hdds = parseFloat(document.getElementById('hdds').value) || 0;
+        
+        // 获取水冷功耗
+        const waterCoolingWatt = parseFloat(document.getElementById('waterCooling').value) || 0;
+        
+        // 计算其他配件总功耗
+        const other = (fans * 5) + (ssds * 6) + (hdds * 10) + waterCoolingWatt;
+        const base = cpu + gpu + other;
+        
+        // 应用安全系数 (1.25/1.5/1.75)
+        const totalWithBuffer = Math.round(base * multiplier);
+        
+        // 计算推荐电源瓦数 (考虑电源转化率损耗)
+        const recommendedWattage = Math.ceil(totalWithBuffer * efficiencyFactor);
+        
+        // 更新显示
+        document.getElementById('totalPower').textContent = totalWithBuffer + "W";
+        document.getElementById('recommendPSU').textContent = recommendedWattage + "W";
+    }
+
+    // 5. 页面加载完成后，初始化按钮状态
+    window.onload = function() {
+        // 默认选中“未来升级”按钮
+        document.getElementById('btn175').classList.add('active');
+        // 默认选中“白牌/铜牌”按钮
+        document.getElementById('basic').classList.add('active');
+        // 执行一次初始计算
+        calculatePower();
+    }
 </script>
 </body>
 </html>
