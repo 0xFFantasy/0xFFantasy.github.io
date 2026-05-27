@@ -3,152 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>整机功耗计算器 - 电源推荐</title>
+    <title>整机功耗计算器</title>
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
             font-family: "Microsoft YaHei", system-ui, sans-serif;
-            background: #0f0f0f;
-            color: #ddd;
-            line-height: 1.6;
-            padding: 40px 20px;
-        }
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
             background: #1a1a1a;
-            border-radius: 20px;
-            padding: 40px 30px;
-            border: 1px solid #00ff9d;
-            box-shadow: 0 0 30px rgba(0, 255, 157, 0.2);
+            color: #ddd;
+            padding: 25px;
+            min-height: 100vh;
         }
-        h1 {
-            text-align: center;
-            color: #00ff9d;
-            margin-bottom: 10px;
-        }
-        .subtitle {
-            text-align: center;
-            color: #888;
-            margin-bottom: 40px;
-        }
-        label {
-            display: block;
-            margin: 22px 0 8px;
-            color: #ccc;
-            font-size: 1.05rem;
-        }
+        h1 { color:#00ff9d; text-align:center; margin-bottom:10px; }
+        .subtitle { text-align:center; color:#888; margin-bottom:30px; }
+        label { display:block; margin:20px 0 8px; color:#ccc; }
         input[type="number"] {
-            width: 100%;
-            padding: 14px;
-            background: #111;
-            border: 1px solid #333;
-            color: white;
-            border-radius: 10px;
-            font-size: 1.2rem;
+            width:100%; padding:14px; background:#111; border:1px solid #333;
+            color:white; border-radius:10px; font-size:1.15rem;
         }
         .multi-btn {
-            padding: 12px 24px;
-            background: #222;
-            border: none;
-            color: #ddd;
-            border-radius: 50px;
-            margin-right: 10px;
-            cursor: pointer;
-            font-size: 1.05rem;
+            padding:12px 20px; background:#222; border:none; color:#ddd;
+            border-radius:50px; margin-right:8px; cursor:pointer;
         }
-        .multi-btn.active {
-            background: #00ff9d;
-            color: #000;
-            font-weight: bold;
-        }
+        .multi-btn.active { background:#00ff9d; color:#000; font-weight:bold; }
         .result {
-            background: #111;
-            padding: 30px;
-            border-radius: 16px;
-            text-align: center;
-            margin: 40px 0;
+            background:#111; padding:25px; border-radius:16px; text-align:center; margin:35px 0;
         }
-        .result h1 {
-            font-size: 3.5rem;
-            color: #00ff9d;
-            margin: 15px 0;
-        }
-        button#calcBtn {
-            width: 100%;
-            padding: 18px;
-            font-size: 1.3rem;
-            background: #00ff9d;
-            color: #000;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            color: #666;
-            font-size: 0.95rem;
+        .result h1 { font-size:3.2rem; color:#00ff9d; margin:10px 0; }
+        .accessory-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>⚡ 整机功耗 & 电源推荐计算器</h1>
-        <p class="subtitle">按照装机猿推荐逻辑 · 留足峰值余量</p>
+    <h1>⚡ 整机功耗计算器</h1>
+    <p class="subtitle">按照装机猿推荐逻辑 · 留足峰值余量</p>
 
-        <label>CPU 最大功耗 (W)</label>
-        <input type="number" id="cpuPower" value="250">
+    <label>CPU 最大功耗 (W)</label>
+    <input type="number" id="cpuPower" value="250">
 
-        <label>显卡 满载功耗 (W)</label>
-        <input type="number" id="gpuPower" value="320">
+    <label>显卡 满载功耗 (W)</label>
+    <input type="number" id="gpuPower" value="320">
 
-        <label>其他配件预估功耗 (W) <small style="color:#666;">(主板+内存+硬盘+风扇+水冷等)</small></label>
-        <input type="number" id="otherPower" value="150">
-
-        <label style="margin-top:25px;">安全系数（推荐）</label>
-        <div style="margin:12px 0 30px;">
-            <button onclick="setMultiplier(1.5)" id="btn15" class="multi-btn">1.5倍（普通）</button>
-            <button onclick="setMultiplier(1.75)" id="btn175" class="multi-btn active">1.75倍（推荐）</button>
-            <button onclick="setMultiplier(2.0)" id="btn2" class="multi-btn">2.0倍（保守）</button>
+    <label style="margin-top:30px;">其他配件精细化估算</label>
+    <div class="accessory-grid">
+        <div>
+            <label>机箱风扇数量（每个约5W）</label>
+            <input type="number" id="fans" value="6" min="0">
         </div>
-
-        <div class="result">
-            <p style="color:#888; font-size:1.1rem;">预计峰值总功耗</p>
-            <h1 id="totalPower">920W</h1>
-            <p style="color:#888; margin-top:10px;">推荐购买电源瓦数 ≥ <strong id="recommendPSU" style="color:#fff; font-size:1.6rem;">1000W</strong></p>
+        <div>
+            <label>SSD 数量（每个约6W）</label>
+            <input type="number" id="ssds" value="2" min="0">
         </div>
-
-        <button id="calcBtn" onclick="calculatePower()">立即计算推荐电源</button>
+        <div>
+            <label>HDD 数量（每个约10W）</label>
+            <input type="number" id="hdds" value="0" min="0">
+        </div>
+        <div>
+            <label style="margin-bottom:8px;">一体式水冷</label>
+            <button onclick="toggleWaterCooling(this)" id="waterCoolingBtn" 
+                    style="width:100%; padding:14px; background:#222; border:none; color:#ddd; border-radius:10px;">
+                ❌ 未使用
+            </button>
+        </div>
     </div>
 
-    <div class="footer">
-        基于装机猿常用推荐公式制作<br>
-        实际使用请以电源额定功率 + 80PLUS 效率为准
+    <label style="margin-top:25px;">安全系数（推荐）</label>
+    <div style="margin:12px 0 30px;">
+        <button onclick="setMultiplier(1.25)" id="btn125" class="multi-btn">1.25倍（轻度）</button>
+        <button onclick="setMultiplier(1.5)" id="btn15" class="multi-btn">1.5倍（普通）</button>
+        <button onclick="setMultiplier(1.75)" id="btn175" class="multi-btn active">1.75倍（推荐）</button>
     </div>
+
+    <div class="result">
+        <p style="color:#888;">预计峰值总功耗</p>
+        <h1 id="totalPower">920W</h1>
+        <p style="color:#888;">推荐电源 ≥ <strong id="recommendPSU" style="color:#fff;">1000W</strong></p>
+    </div>
+
+    <button onclick="calculatePower()" style="width:100%; padding:18px; font-size:1.25rem; background:#00ff9d; color:#000; border:none; border-radius:50px; font-weight:bold;">
+        立即计算推荐电源
+    </button>
 
     <script>
         let multiplier = 1.75;
+        let isWaterCooling = false;
 
         function setMultiplier(m) {
             multiplier = m;
             document.querySelectorAll('.multi-btn').forEach(btn => btn.classList.remove('active'));
-            if (m === 1.5) document.getElementById('btn15').classList.add('active');
-            else if (m === 1.75) document.getElementById('btn175').classList.add('active');
-            else document.getElementById('btn2').classList.add('active');
+            if (m === 1.25) document.getElementById('btn125').classList.add('active');
+            else if (m === 1.5) document.getElementById('btn15').classList.add('active');
+            else document.getElementById('btn175').classList.add('active');
+            calculatePower();
+        }
+
+        function toggleWaterCooling(btn) {
+            isWaterCooling = !isWaterCooling;
+            if (isWaterCooling) {
+                btn.textContent = "✅ 已使用 (约45W)";
+                btn.style.background = "#00ff9d";
+                btn.style.color = "#000";
+            } else {
+                btn.textContent = "❌ 未使用";
+                btn.style.background = "#222";
+                btn.style.color = "#ddd";
+            }
             calculatePower();
         }
 
         function calculatePower() {
             const cpu = parseFloat(document.getElementById('cpuPower').value) || 0;
             const gpu = parseFloat(document.getElementById('gpuPower').value) || 0;
-            const other = parseFloat(document.getElementById('otherPower').value) || 0;
+            
+            const fans = parseFloat(document.getElementById('fans').value) || 0;
+            const ssds = parseFloat(document.getElementById('ssds').value) || 0;
+            const hdds = parseFloat(document.getElementById('hdds').value) || 0;
+            
+            const other = (fans * 5) + (ssds * 6) + (hdds * 10) + (isWaterCooling ? 45 : 0);
 
             const base = cpu + gpu + other;
             const total = Math.round(base * multiplier);
-
+            
             let recommend = Math.ceil(total / 100) * 100;
             if (recommend < total + 150) recommend += 150;
 
@@ -156,7 +134,7 @@
             document.getElementById('recommendPSU').textContent = recommend + 'W';
         }
 
-        // 页面加载后自动计算一次
+        // 页面加载后自动计算
         window.onload = calculatePower;
     </script>
 </body>
