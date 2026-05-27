@@ -22,49 +22,55 @@
         }
         .multi-btn {
             padding:12px 20px; background:#222; border:none; color:#ddd;
-            border-radius:50px; margin-right:8px; cursor:pointer;
+            border-radius:50px; cursor:pointer; width: 100%; text-align: left;
         }
         .multi-btn.active { background:#00ff9d; color:#000; font-weight:bold; }
         .result {
             background:#111; padding:25px; border-radius:16px; text-align:center; margin:35px 0;
         }
         .result h1 { font-size:3.2rem; color:#00ff9d; margin:10px 0; }
-        .accessory-grid {
+        
+        /* 新增的竖向布局样式 */
+        .vertical-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 15px;
             margin-top: 10px;
         }
+        .vertical-grid > div {
+            grid-column: span 1;
+        }
         
-
-.eff-btn {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.eff-btn.active {
-  background: #00ff9d;
-  color: #000;
-  font-weight: bold;
-}
+        .eff-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+            text-align: left;
+        }
+        .eff-btn.active {
+            background: #00ff9d;
+            color: #000;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <h1>⚡ 整机功耗计算器</h1>
     <p class="subtitle">按照装机猿推荐逻辑 · 留足峰值余量</p>
-
+    
     <label>CPU 最大功耗 (W)</label>
     <input type="number" id="cpuPower" value="250">
-
+    
     <label>显卡 满载功耗 (W)</label>
     <input type="number" id="gpuPower" value="320">
-
-    <label style="margin-top:30px;"> 自由选择你的其他配件</label>
-    <div class="accessory-grid">
+    
+    <label style="margin-top:30px;">自由选择你的其他配件</label>
+    <!-- 修改这里：使用 vertical-grid 替代 accessory-grid -->
+    <div class="vertical-grid">
         <div>
             <label>机箱风扇数量（每个约5W）</label>
             <input type="number" id="fans" value="6" min="0">
@@ -78,107 +84,95 @@
             <input type="number" id="hdds" value="0" min="0">
         </div>
         <div>
-       <label style="margin-bottom:8px;">水冷散热器</label>
-       <select id="waterCooling" onchange="calculatePower()" style="width:100%; padding:14px; background:#222; border:none; color:#ddd; border-radius:10px;">
-       <option value="0">未使用</option>
-       <option value="15">120水冷 (约15W)</option>
-       <option value="30">240水冷 (约30W)</option>
-       <option value="45" selected>360水冷 (约45W)</option>
-          </select>
-      </div>
+            <label style="margin-bottom:8px;">水冷散热器</label>
+            <select id="waterCooling" onchange="calculatePower()" style="width:100%; padding:14px; background:#222; border:none; color:#ddd; border-radius:10px;">
+                <option value="0">未使用</option>
+                <option value="15">120水冷 (约15W)</option>
+                <option value="30">240水冷 (约30W)</option>
+                <option value="45" selected>360水冷 (约45W)</option>
+            </select>
+        </div>
     </div>
 
+    <!-- 修改这里：安全系数也改为竖向排列 -->
     <label style="margin-top:25px;">安全系数（推荐）</label>
-    <div style="margin:12px 0 30px;">
+    <div class="vertical-grid" style="margin:12px 0 30px;">
         <button onclick="setMultiplier(1.25)" id="btn125" class="multi-btn">1.25倍（够用）</button>
         <button onclick="setMultiplier(1.5)" id="btn15" class="multi-btn">1.5倍（推荐）</button>
         <button onclick="setMultiplier(1.75)" id="btn175" class="multi-btn active">1.75倍（未来升级）</button>
     </div>
-      <label style="margin-top:25px;">电源认证等级</label>
-      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-      <button type="button" onclick="setEfficiency('basic')" class="eff-btn" id="basic">白牌/铜牌</button>
-      <button type="button" onclick="setEfficiency('bronze')" class="eff-btn" id="bronze">金牌</button>
-      <button type="button" onclick="setEfficiency('platinum')" class="eff-btn" id="platinum">白金牌/钛金</button>
-     </div>
+
+    <!-- 修改这里：电源认证也改为竖向排列 -->
+    <label style="margin-top:25px;">电源认证等级</label>
+    <div class="vertical-grid" style="margin:12px 0 30px;">
+        <button type="button" onclick="setEfficiency('basic')" class="eff-btn" id="basic">白牌/铜牌</button>
+        <button type="button" onclick="setEfficiency('bronze')" class="eff-btn" id="bronze">金牌</button>
+        <button type="button" onclick="setEfficiency('platinum')" class="eff-btn" id="platinum">白金牌/钛金</button>
+    </div>
+
     <div class="result">
         <p style="color:#888;">预计峰值总功耗</p>
         <h1 id="totalPower">920W</h1>
         <p style="color:#888;">推荐电源 ≥ <strong id="recommendPSU" style="color:#fff;">1000W</strong></p>
     </div>
-
+    
     <button onclick="calculatePower()" style="width:100%; padding:18px; font-size:1.25rem; background:#00ff9d; color:#000; border:none; border-radius:50px; font-weight:bold;">
         立即计算推荐电源
     </button>
 
     <script>
-    // 1. 定义全局变量：安全系数 multiplier 和 效率系数 efficiencyFactor
-    let multiplier = 1.75; // 默认安全系数（对应“未来升级”）
-    let efficiencyFactor = 1.2; // 默认效率系数（对应“白牌/铜牌”）
+        // 1. 定义全局变量：安全系数 multiplier 和 效率系数 efficiencyFactor
+        let multiplier = 1.75; // 默认安全系数（对应“未来升级”）
+        let efficiencyFactor = 1.2; // 默认效率系数（对应“白牌/铜牌”）
 
-    // 2. 定义 setMultiplier 函数（用于处理安全系数按钮的点击）
-    function setMultiplier(value) {
-        multiplier = value;
-        // 更新按钮的 active 样式
-        document.querySelectorAll('.multi-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        event.target.classList.add('active');
-        calculatePower(); // 点击后立即计算
-    }
-
-    // 3. 修改 setEfficiency 函数（移除内部的 calculatePower() 调用，或者保留也可以，这里为了逻辑清晰保留）
-    function setEfficiency(type) {
-        // 移除所有按钮的 active 状态
-        document.querySelectorAll('.eff-btn').forEach(btn => btn.classList.remove('active'));
-        
-        if (type === 'basic') {
-            efficiencyFactor = 1.2; // 白牌/铜牌
-            document.getElementById('basic').classList.add('active');
-        } else if (type === 'bronze') {
-            efficiencyFactor = 1.1; // 金牌
-            document.getElementById('bronze').classList.add('active');
-        } else {
-            efficiencyFactor = 1.05; // 白金牌/钛金
-            document.getElementById('platinum').classList.add('active');
+        // 2. 定义 setMultiplier 函数
+        function setMultiplier(value) {
+            multiplier = value;
+            document.querySelectorAll('.multi-btn').forEach(btn => { btn.classList.remove('active'); });
+            event.target.classList.add('active');
+            calculatePower();
         }
-        calculatePower(); // 点击后立即计算
-    }
 
-    // 4. 修正 calculatePower 函数
-    function calculatePower() {
-        const cpu = parseFloat(document.getElementById('cpuPower').value) || 0;
-        const gpu = parseFloat(document.getElementById('gpuPower').value) || 0;
-        const fans = parseFloat(document.getElementById('fans').value) || 0;
-        const ssds = parseFloat(document.getElementById('ssds').value) || 0;
-        const hdds = parseFloat(document.getElementById('hdds').value) || 0;
-        
-        // 获取水冷功耗
-        const waterCoolingWatt = parseFloat(document.getElementById('waterCooling').value) || 0;
-        
-        // 计算其他配件总功耗
-        const other = (fans * 5) + (ssds * 6) + (hdds * 10) + waterCoolingWatt;
-        const base = cpu + gpu + other;
-        
-        // 应用安全系数 (1.25/1.5/1.75)
-        const totalWithBuffer = Math.round(base * multiplier);
-        
-        // 计算推荐电源瓦数 (考虑电源转化率损耗)
-        const recommendedWattage = Math.ceil(totalWithBuffer * efficiencyFactor);
-        
-        // 更新显示
-        document.getElementById('totalPower').textContent = totalWithBuffer + "W";
-        document.getElementById('recommendPSU').textContent = recommendedWattage + "W";
-    }
+        // 3. 定义 setEfficiency 函数
+        function setEfficiency(type) {
+            document.querySelectorAll('.eff-btn').forEach(btn => btn.classList.remove('active'));
+            if (type === 'basic') {
+                efficiencyFactor = 1.2;
+                document.getElementById('basic').classList.add('active');
+            } else if (type === 'bronze') {
+                efficiencyFactor = 1.1;
+                document.getElementById('bronze').classList.add('active');
+            } else {
+                efficiencyFactor = 1.05;
+                document.getElementById('platinum').classList.add('active');
+            }
+            calculatePower();
+        }
 
-    // 5. 页面加载完成后，初始化按钮状态
-    window.onload = function() {
-        // 默认选中“未来升级”按钮
-        document.getElementById('btn175').classList.add('active');
-        // 默认选中“白牌/铜牌”按钮
-        document.getElementById('basic').classList.add('active');
-        // 执行一次初始计算
-        calculatePower();
-    }
-</script>
+        // 4. 计算核心逻辑
+        function calculatePower() {
+            const cpu = parseFloat(document.getElementById('cpuPower').value) || 0;
+            const gpu = parseFloat(document.getElementById('gpuPower').value) || 0;
+            const fans = parseFloat(document.getElementById('fans').value) || 0;
+            const ssds = parseFloat(document.getElementById('ssds').value) || 0;
+            const hdds = parseFloat(document.getElementById('hdds').value) || 0;
+            const waterCoolingWatt = parseFloat(document.getElementById('waterCooling').value) || 0;
+
+            const other = (fans * 5) + (ssds * 6) + (hdds * 10) + waterCoolingWatt;
+            const base = cpu + gpu + other;
+            const totalWithBuffer = Math.round(base * multiplier);
+            const recommendedWattage = Math.ceil(totalWithBuffer * efficiencyFactor);
+
+            document.getElementById('totalPower').textContent = totalWithBuffer + "W";
+            document.getElementById('recommendPSU').textContent = recommendedWattage + "W";
+        }
+
+        // 5. 初始化
+        window.onload = function() {
+            document.getElementById('btn175').classList.add('active');
+            document.getElementById('basic').classList.add('active');
+            calculatePower();
+        }
+    </script>
 </body>
 </html>
