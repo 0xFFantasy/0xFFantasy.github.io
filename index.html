@@ -785,8 +785,8 @@ freedom.addEventListener('mousemove', () => {
     }, 1000);   // 停留1秒后恢复马赛克
 });
 </script>
-    <!-- ==================== 左侧悬浮电源计算器（调用 power-calculator.html） ==================== -->
-<!-- 悬浮按钮 -->
+    
+<!-- 电源功耗悬浮按钮 -->
 <button onclick="togglePowerPanel()" 
         style="position: fixed; left: 25px; top: 50%; transform: translateY(-50%); 
                width: 70px; height: 70px; background: linear-gradient(135deg, #00ff9d, #00cc7a); 
@@ -809,9 +809,9 @@ freedom.addEventListener('mousemove', () => {
             <button onclick="togglePowerPanel()" style="background:none; border:none; font-size:32px; color:#888; cursor:pointer; padding:0 10px;">✕</button>
         </div>
 
-        <!-- 调用独立的 power-calculator.html -->
+       
         <iframe id="powerFrame" 
-                src="power-calculator.html" 
+                src="power-Calculator.html" 
                 style="flex: 1; border: none; border-radius: 12px; background: #111; width:100%;"
                 allowfullscreen></iframe>
     </div>
